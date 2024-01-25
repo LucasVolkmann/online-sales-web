@@ -15,7 +15,7 @@ export const BackgroundImage = styled.img`
 `;
 
 export const LogoImage = styled.img`
-  width: 250px;
+  width: 220px;
 `;
 
 export const LoginTitle = styled(Title)``;

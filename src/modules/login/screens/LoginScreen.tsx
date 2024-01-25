@@ -28,14 +28,20 @@ const LoginScreen = () => {
 
   return (
     <div>
-      <BackgroundImage src="./background.jpg" />;
+      <BackgroundImage src="./background.jpg" />
       <ContainerLogin>
         <LimitedContainer>
           <LogoImage src="./logo.png" />
           <LoginTitle level={3} type="secondary">
             Login your account
           </LoginTitle>
-          <Input label="E-mail" margin="20px 0px 0px" onChange={handleEmail} value={email} />
+          <Input
+            type="email"
+            label="E-mail"
+            margin="20px 0px 0px"
+            onChange={handleEmail}
+            value={email}
+          />
           <Input
             label="Password"
             isPassword
