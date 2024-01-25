@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
+const CONTAINER_WIDTH = 650;
+
 export const BackgroundImage = styled.img`
   position: absolute;
   left: 0px;
   top: 0px;
-  width: calc(100% - 350px);
+  width: calc(100% - ${CONTAINER_WIDTH}px);
   height: 100vh;
   object-fit: cover;
 `;
 
 export const LogoImage = styled.img`
   width: 150px;
+  margin: 25px auto;
+  margin-bottom: 50px;
 `;
 
 export const ContainerLogin = styled.div`
@@ -18,11 +22,11 @@ export const ContainerLogin = styled.div`
   right: 0px;
   top: 0px;
   width: 100%;
-  max-width: 350px;
+  max-width: ${CONTAINER_WIDTH}px;
   height: 100vh;
-  background-color: rgba(240, 240, 240, 1);
+  background-color: rgba(245, 245, 245, 1);
   border-left: 1px solid rgba(200, 200, 200, 1);
-  box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.1);
 
   display: flex;
   align-items: center;
@@ -30,10 +34,9 @@ export const ContainerLogin = styled.div`
 `;
 
 export const LimitedContainer = styled.div`
-  height: fit-content;
   width: 80%;
-  border: 1px solid black;
-
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  row-gap: 20px;
+  margin-bottom: 40%;
 `;
