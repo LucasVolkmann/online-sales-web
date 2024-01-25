@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const { Title } = Typography;
 
-const CONTAINER_WIDTH = 650;
+const CONTAINER_WIDTH = 500;
 
 export const BackgroundImage = styled.img`
   position: absolute;
@@ -24,7 +24,10 @@ export const ContainerLogin = styled.div`
   position: absolute;
   right: 0px;
   top: 0px;
+
+  box-sizing: border-box;
   width: 100%;
+  padding: 50px;
   max-width: ${CONTAINER_WIDTH}px;
   height: 100vh;
   background-color: rgba(245, 245, 245, 1);
@@ -37,9 +40,10 @@ export const ContainerLogin = styled.div`
 `;
 
 export const LimitedContainer = styled.div`
-  width: 80%;
+  width: 100%;
+  min-width: 250px;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 20px;
 `;
