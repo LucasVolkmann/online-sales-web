@@ -1,14 +1,17 @@
+import { Typography } from 'antd';
 import styled from 'styled-components';
+
+const { Text } = Typography;
 
 export const BoxInput = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
-export const InputLabel = styled.label`
-  font-family: 'Poppins';
+export const InputLabel = styled(Text)`
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
   line-height: 21px;
 

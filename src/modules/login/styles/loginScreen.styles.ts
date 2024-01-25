@@ -1,4 +1,7 @@
+import { Typography } from 'antd';
 import styled from 'styled-components';
+
+const { Title } = Typography;
 
 const CONTAINER_WIDTH = 650;
 
@@ -12,10 +15,10 @@ export const BackgroundImage = styled.img`
 `;
 
 export const LogoImage = styled.img`
-  width: 150px;
-  margin: 25px auto;
-  margin-bottom: 50px;
+  width: 250px;
 `;
+
+export const LoginTitle = styled(Title)``;
 
 export const ContainerLogin = styled.div`
   position: absolute;
@@ -37,6 +40,6 @@ export const LimitedContainer = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   row-gap: 20px;
-  margin-bottom: 40%;
 `;
