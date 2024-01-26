@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const { Title } = Typography;
 
-const CONTAINER_WIDTH = 500;
+const CONTAINER_WIDTH = 700;
 
 export const BackgroundImage = styled.img`
   position: absolute;
@@ -12,10 +12,6 @@ export const BackgroundImage = styled.img`
   width: calc(100% - ${CONTAINER_WIDTH}px);
   height: 100vh;
   object-fit: cover;
-`;
-
-export const LogoImage = styled.img`
-  width: 220px;
 `;
 
 export const LoginTitle = styled(Title)``;
