@@ -1,9 +1,9 @@
-import axios from 'axios';
 import { useState } from 'react';
 
-import Button from '../../../shared/buttons/button/Button';
-import SVGLogo from '../../../shared/icons/SVGLogo';
-import Input from '../../../shared/inputs/input/Input';
+import Button from '../../../shared/components/buttons/button/Button';
+import SVGLogo from '../../../shared/components/icons/SVGLogo';
+import Input from '../../../shared/components/inputs/input/Input';
+import { useRequests } from '../../../shared/hooks/useRequests';
 import {
   BackgroundImage,
   ContainerLogin,
@@ -14,6 +14,7 @@ import {
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { loading, postRequest } = useRequests();
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -24,22 +25,10 @@ const LoginScreen = () => {
   };
 
   const login = async () => {
-    await axios({
-      method: 'post',
-      url: 'http://localhost:8080/auth',
-      data: {
-        email: email,
-        password: password,
-      },
-    })
-      .then((res) => {
-        alert(`Login has been success. \n Access token: ${res.data.accessToken}`);
-      })
-      .catch((err) => {
-        alert('Invalid credentials.');
-        // eslint-disable-next-line no-console
-        console.error(err);
-      });
+    postRequest('http://localhost:8080/auth', {
+      email,
+      password,
+    });
   };
 
   return (
@@ -65,7 +54,7 @@ const LoginScreen = () => {
             onChange={handlePassword}
             value={password}
           />
-          <Button type="primary" margin="20px 0px 0px" onClick={login}>
+          <Button loading={loading} type="primary" margin="20px 0px 0px" onClick={login}>
             Login
           </Button>
         </LimitedContainer>
