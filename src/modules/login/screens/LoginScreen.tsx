@@ -2,13 +2,13 @@ import axios from 'axios';
 import { useState } from 'react';
 
 import Button from '../../../shared/buttons/button/Button';
+import SVGLogo from '../../../shared/icons/SVGLogo';
 import Input from '../../../shared/inputs/input/Input';
 import {
   BackgroundImage,
   ContainerLogin,
   LimitedContainer,
   LoginTitle,
-  LogoImage,
 } from '../styles/loginScreen.styles';
 
 const LoginScreen = () => {
@@ -43,11 +43,11 @@ const LoginScreen = () => {
   };
 
   return (
-    <div>
+    <>
       <BackgroundImage src="./background.jpg" />
       <ContainerLogin>
         <LimitedContainer>
-          <LogoImage src="./logo.png" />
+          <SVGLogo width={325} />
           <LoginTitle level={3} type="secondary">
             Login your account
           </LoginTitle>
@@ -70,7 +70,7 @@ const LoginScreen = () => {
           </Button>
         </LimitedContainer>
       </ContainerLogin>
-    </div>
+    </>
   );
 };
 
