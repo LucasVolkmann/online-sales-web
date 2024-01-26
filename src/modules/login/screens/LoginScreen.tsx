@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 import Button from '../../../shared/buttons/button/Button';
@@ -22,8 +23,23 @@ const LoginScreen = () => {
     setPassword(e.target.value);
   };
 
-  const login = () => {
-    alert(`email: ${email}\npassword: ${password}`);
+  const login = async () => {
+    await axios({
+      method: 'post',
+      url: 'http://localhost:8080/auth',
+      data: {
+        email: email,
+        password: password,
+      },
+    })
+      .then((res) => {
+        alert(`Login has been success. \n Access token: ${res.data.accessToken}`);
+      })
+      .catch((err) => {
+        alert('Invalid credentials.');
+        // eslint-disable-next-line no-console
+        console.error(err);
+      });
   };
 
   return (
