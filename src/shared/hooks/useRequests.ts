@@ -23,7 +23,10 @@ export const useRequests = () => {
       url: url,
       data: body,
     })
-      .then((res) => res.data)
+      .then((res) => {
+        alert('Login has been success.');
+        return res;
+      })
       .catch(() => alert('Invalid credentials.'));
     setLoading(false);
     return response;

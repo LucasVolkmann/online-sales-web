@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from '../../../shared/components/buttons/button/Button';
 import SVGLogo from '../../../shared/components/icons/SVGLogo';
 import Input from '../../../shared/components/inputs/input/Input';
+import { useGlobalContext } from '../../../shared/hooks/useGlobalContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import {
   BackgroundImage,
@@ -12,6 +13,7 @@ import {
 } from '../styles/loginScreen.styles';
 
 const LoginScreen = () => {
+  const { accessToken, setAccessToken } = useGlobalContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { loading, postRequest } = useRequests();
@@ -25,10 +27,11 @@ const LoginScreen = () => {
   };
 
   const login = async () => {
-    postRequest('http://localhost:8080/auth', {
+    const { data } = await postRequest('http://localhost:8080/auth', {
       email,
       password,
     });
+    setAccessToken(data.accessToken);
   };
 
   return (
@@ -38,7 +41,7 @@ const LoginScreen = () => {
         <LimitedContainer>
           <SVGLogo width={325} />
           <LoginTitle level={3} type="secondary">
-            Login your account
+            Login your account {accessToken}
           </LoginTitle>
           <Input
             type="email"

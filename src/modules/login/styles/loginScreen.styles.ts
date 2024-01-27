@@ -26,6 +26,7 @@ export const ContainerLogin = styled.div`
   padding: 50px;
   max-width: ${CONTAINER_WIDTH}px;
   height: 100vh;
+
   background-color: rgba(245, 245, 245, 1);
   border-left: 1px solid rgba(200, 200, 200, 1);
   box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.1);
@@ -37,9 +38,10 @@ export const ContainerLogin = styled.div`
 
 export const LimitedContainer = styled.div`
   width: 100%;
-  min-width: 250px;
-  max-width: 350px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-bottom: 20%;
 `;
