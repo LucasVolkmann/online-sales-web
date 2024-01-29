@@ -20,14 +20,15 @@ export const useRequests = () => {
     return response;
   };
 
-  const postRequest = async (url: string, body: any) => {
+  const postRequest = async <T>(url: string, body: any): Promise<T | void> => {
     setLoading(true);
-    const response = await connectionAPI_POST(url, body)
+    return await connectionAPI_POST<T>(url, body)
       .then((res) => {
         setNotification({
           message: 'Entering...',
           type: 'success',
         });
+        setLoading(false);
         return res;
       })
       .catch((error: Error) => {
@@ -35,9 +36,9 @@ export const useRequests = () => {
           message: error.message,
           type: 'error',
         });
+        setLoading(false);
+        return;
       });
-    setLoading(false);
-    return response;
   };
 
   return {
