@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
+import { connectionAPI_POST } from '../functions/connection/connectionAPI';
 import { useGlobalContext } from './useGlobalContext';
 
 export const useRequests = () => {
@@ -21,24 +22,18 @@ export const useRequests = () => {
 
   const postRequest = async (url: string, body: any) => {
     setLoading(true);
-    const response = await axios({
-      method: 'post',
-      url: url,
-      data: body,
-    })
+    const response = await connectionAPI_POST(url, body)
       .then((res) => {
         setNotification({
           message: 'Entering...',
           type: 'success',
-          description: 'Login has been successful.',
         });
         return res;
       })
-      .catch(() => {
+      .catch((error: Error) => {
         setNotification({
-          message: 'Error.',
+          message: error.message,
           type: 'error',
-          description: 'Wrong credentials.',
         });
       });
     setLoading(false);
