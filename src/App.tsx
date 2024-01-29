@@ -1,18 +1,17 @@
 import type { Router as RemixRouter } from '@remix-run/router';
 import { ConfigProvider } from 'antd';
-import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { loginRouter } from './modules/login/LoginRouter';
+import { firstScreenRouter } from './modules/firstScreen/routes';
+import { loginRouter } from './modules/login/routes';
+import { productRoutes } from './modules/products/routes';
 import { useNotification } from './shared/hooks/useNotification';
-const rootRouter: RouteObject[] = [
-  {
-    path: '/',
-    element: <div>Hello world!</div>,
-    errorElement: <div>Error</div>,
-  },
-];
 
-const router: RemixRouter = createBrowserRouter([...rootRouter, ...loginRouter]);
+const router: RemixRouter = createBrowserRouter([
+  ...firstScreenRouter,
+  ...loginRouter,
+  ...productRoutes,
+]);
 
 function App() {
   const { contextHolder } = useNotification();
