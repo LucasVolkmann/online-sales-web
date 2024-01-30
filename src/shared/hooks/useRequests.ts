@@ -1,12 +1,18 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { AuthType } from '../../modules/login/types/AuthType';
+import { ProductRoutesEnum } from '../../modules/products/routes';
+import { URL_AUTH } from '../constants/Urls';
+import { setAuthorizationToken } from '../functions/connection/auth';
 import { connectionAPI_POST } from '../functions/connection/connectionAPI';
 import { useGlobalContext } from './useGlobalContext';
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false);
   const { setNotification } = useGlobalContext();
+  const navigate = useNavigate();
 
   const getRequest = async (url: string) => {
     setLoading(true);
@@ -41,9 +47,36 @@ export const useRequests = () => {
       });
   };
 
+  const authRequest = async (body: any): Promise<void> => {
+    setLoading(true);
+    await connectionAPI_POST<AuthType>(URL_AUTH, body)
+      .then((result) => {
+        if (result.accessToken) {
+          setAuthorizationToken(result.accessToken);
+          setNotification({
+            message: 'Entering...',
+            type: 'success',
+          });
+        } else {
+          throw new Error('Server Error.');
+        }
+        navigate(ProductRoutesEnum.PRODUCT);
+        return;
+      })
+      .catch((error) => {
+        setNotification({
+          message: error.message,
+          type: 'error',
+        });
+        return;
+      });
+    setLoading(false);
+  };
+
   return {
     loading,
     getRequest,
     postRequest,
+    authRequest,
   };
 };

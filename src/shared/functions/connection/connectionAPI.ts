@@ -1,21 +1,33 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-import { ERROR_ACCESS_DENIED, ERROR_CONNECTION } from '../../constants/errorMessages';
+import {
+  ERROR_ACCESS_DENIED,
+  ERROR_CONNECTION,
+  ERROR_INVALID_PASSWORD,
+} from '../../constants/errorMessages';
 import { MethodsEnum } from '../../enumerations/methods.enum';
+import { getAuthorizationToken } from './auth';
 
 export default class ConnectionAPI {
   static async call<T>(url: string, method: MethodsEnum, body?: unknown): Promise<T> {
+    const config: AxiosRequestConfig = {
+      headers: {
+        Authorization: getAuthorizationToken(),
+        'Content-Type': 'application/json',
+      },
+    };
+
     switch (method) {
       case MethodsEnum.GET:
-        return (await axios.get<T>(url)).data;
+        return (await axios.get<T>(url, config)).data;
       case MethodsEnum.DELETE:
-        return (await axios.delete<T>(url)).data;
+        return (await axios.delete<T>(url, config)).data;
       case MethodsEnum.POST:
-        return (await axios.post<T>(url, body)).data;
+        return (await axios.post<T>(url, body, config)).data;
       case MethodsEnum.PUT:
-        return (await axios.put<T>(url, body)).data;
+        return (await axios.put<T>(url, body, config)).data;
       case MethodsEnum.PATCH:
-        return (await axios.patch<T>(url, body)).data;
+        return (await axios.patch<T>(url, body, config)).data;
     }
   }
 
@@ -26,6 +38,8 @@ export default class ConnectionAPI {
           case 401:
           case 403:
             throw new Error(ERROR_ACCESS_DENIED);
+          case 404:
+            throw new Error(ERROR_INVALID_PASSWORD);
           default:
             throw new Error(ERROR_CONNECTION);
         }
