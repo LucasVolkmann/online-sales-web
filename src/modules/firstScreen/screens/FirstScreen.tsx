@@ -20,24 +20,22 @@ export const FirstScreen = () => {
   useEffect(() => {
     const token = getAuthorizationToken();
     if (token) {
-      (async () => {
-        await connectionAPI_GET<UserType>(URL_USER)
-          .then((res) => {
-            setNotification({
-              message: `Welcome ${res.name}`,
-              type: 'success',
-            });
-            navigate(ProductRoutesEnum.PRODUCT);
-          })
-          .catch(() => {
-            setNotification({
-              message: 'You must be logged in to enter.',
-              type: 'info',
-            });
-            unsetAuthorizationToken();
-            navigate(LoginRoutesEnum.LOGIN);
+      connectionAPI_GET<UserType>(URL_USER)
+        .then((res) => {
+          setNotification({
+            message: `Welcome ${res.name}`,
+            type: 'success',
           });
-      })();
+          navigate(ProductRoutesEnum.PRODUCT);
+        })
+        .catch(() => {
+          setNotification({
+            message: 'You must be logged in to enter.',
+            type: 'info',
+          });
+          unsetAuthorizationToken();
+          navigate(LoginRoutesEnum.LOGIN);
+        });
     } else {
       navigate(LoginRoutesEnum.LOGIN);
     }
