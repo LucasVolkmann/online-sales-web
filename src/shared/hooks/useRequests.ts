@@ -1,12 +1,12 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthType } from '../../modules/login/types/AuthType';
 import { ProductRoutesEnum } from '../../modules/products/routes';
 import { URL_AUTH } from '../constants/Urls';
+import { MethodsEnum } from '../enumerations/methods.enum';
 import { setAuthorizationToken } from '../functions/connection/auth';
-import { connectionAPI_POST } from '../functions/connection/connectionAPI';
+import ConnectionAPI, { connectionAPI_POST } from '../functions/connection/connectionAPI';
 import { useGlobalContext } from './useGlobalContext';
 
 export const useRequests = () => {
@@ -14,14 +14,29 @@ export const useRequests = () => {
   const { setNotification } = useGlobalContext();
   const navigate = useNavigate();
 
-  const getRequest = async (url: string) => {
+  const request = async <T>(
+    url: string,
+    method: MethodsEnum,
+    saveGlobal: (object: T) => void,
+    body?: unknown,
+  ): Promise<T | undefined> => {
     setLoading(true);
-    const response = await axios({
-      method: 'get',
-      url: url,
-    })
-      .then((res) => res.data)
-      .catch(() => alert('Invalid credentials.'));
+
+    const response: T | undefined = await ConnectionAPI.connect<T>(url, method, body)
+      .then((res) => {
+        if (saveGlobal) {
+          saveGlobal(res);
+        }
+        return res;
+      })
+      .catch((error: Error) => {
+        setNotification({
+          message: error.message,
+          type: 'error',
+        });
+        return undefined;
+      });
+
     setLoading(false);
     return response;
   };
@@ -75,7 +90,7 @@ export const useRequests = () => {
 
   return {
     loading,
-    getRequest,
+    request,
     postRequest,
     authRequest,
   };

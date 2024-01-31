@@ -4,5 +4,8 @@
   },
   "eslint.validate": ["javascript"],
   "files.autoSave": "off",
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "cSpell.words": [
+    "antd"
+  ]
 }
