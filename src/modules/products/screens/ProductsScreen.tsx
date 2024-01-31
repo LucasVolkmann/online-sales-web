@@ -1,28 +1,31 @@
-import { Button } from 'antd/es/radio';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import { unsetAuthorizationToken } from '../../../shared/functions/connection/auth';
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext';
-import { LoginRoutesEnum } from '../../login/routes';
+import { URL_PRODUCT } from '../../../shared/constants/Urls';
+import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
+import { useDataContext } from '../../../shared/hooks/useDataContext';
+import { useRequests } from '../../../shared/hooks/useRequests';
+import { ProductType } from '../types/ProductType';
 
 export const ProductsScreen = () => {
-  const { setNotification, user } = useGlobalContext();
-  const navigate = useNavigate();
+  const { products, setProducts } = useDataContext();
+  const { request } = useRequests();
 
-  const logoff = () => {
-    setNotification({
-      message: 'Exiting...',
-      type: 'success',
-    });
-    unsetAuthorizationToken();
-    navigate(LoginRoutesEnum.LOGIN);
-  };
+  useEffect(() => {
+    request<ProductType[]>(URL_PRODUCT, MethodsEnum.GET, setProducts);
+  }, []);
 
   return (
     <>
-      <p>This is the Products screen</p>
-      <p>Welcome {user?.name}</p>
-      <Button onClick={logoff}>logoff</Button>
+      <ul>
+        {products?.map((product) => {
+          return (
+            <li key={product.id}>
+              <h3>{product.name}</h3>
+              <p>{product.price}</p>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };

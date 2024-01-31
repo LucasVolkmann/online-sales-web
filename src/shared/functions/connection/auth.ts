@@ -11,12 +11,12 @@ export const unsetAuthorizationToken = () => unsetItemStorage(AUTHORIZATION_KEY)
 
 export const getAuthorizationToken = () => getItemStorage(AUTHORIZATION_KEY);
 
-export const verifyLoggedIn = (setUser: (user: UserType) => void, user?: UserType) => {
+export const verifyLoggedIn = async (setUser: (user: UserType) => void, user?: UserType) => {
   if (!getAuthorizationToken()) {
     location.href = LoginRoutesEnum.LOGIN;
   }
   if (!user) {
-    connectionAPI_GET<UserType>(URL_USER)
+    await connectionAPI_GET<UserType>(URL_USER)
       .then((responseUser) => {
         setUser(responseUser);
       })
