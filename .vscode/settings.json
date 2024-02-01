@@ -5,7 +5,6 @@
   "eslint.validate": ["javascript"],
   "files.autoSave": "off",
   "files.eol": "\n",
-  "cSpell.words": [
-    "antd"
-  ]
+  "cSpell.words": ["antd"],
+  "cSpell.language": "en,pt,pt-BR"
 }
