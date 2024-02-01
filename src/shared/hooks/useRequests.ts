@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { AuthType } from '../../modules/login/types/AuthType';
-import { ProductRoutesEnum } from '../../modules/products/routes';
 import { URL_AUTH } from '../constants/Urls';
 import { MethodsEnum } from '../enumerations/methods.enum';
 import { setAuthorizationToken } from '../functions/connection/auth';
@@ -12,7 +10,7 @@ import { useGlobalContext } from './useGlobalContext';
 export const useRequests = () => {
   const [loading, setLoading] = useState(false);
   const { setNotification } = useGlobalContext();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const request = async <T>(
     url: string,
@@ -54,7 +52,9 @@ export const useRequests = () => {
         } else {
           throw new Error('Server Error.');
         }
-        navigate(ProductRoutesEnum.PRODUCT);
+        //TODO: change to navigate()
+        // navigate(ProductRoutesEnum.PRODUCT);
+        location.href = 'http://localhost:5173/product';
         return;
       })
       .catch((error) => {

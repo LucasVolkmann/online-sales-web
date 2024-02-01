@@ -13,7 +13,7 @@ export const FirstScreen = () => {
     if (user) {
       navigate(ProductRoutesEnum.PRODUCT);
     }
-  }, []);
+  }, [user]);
 
   return (
     <div
