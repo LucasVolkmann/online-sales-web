@@ -38,7 +38,7 @@ const LoginScreen = () => {
         <LimitedContainer>
           <SVGLogo width={325} />
           <LoginTitle level={3} type="secondary">
-            Login your account
+            Acesse sua conta
           </LoginTitle>
           <Input
             type="email"
@@ -48,7 +48,7 @@ const LoginScreen = () => {
             value={email}
           />
           <Input
-            label="Password"
+            label="Senha"
             isPassword
             margin="20px 0px 0px"
             onChange={handlePassword}
