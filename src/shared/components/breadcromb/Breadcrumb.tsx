@@ -18,25 +18,23 @@ const Breadcrumb = ({ listBreadcrumb }: BreadcrumbProps) => {
   };
 
   return (
-    <BreadcrumbAntd>
-      {listBreadcrumb.map((item, i) => {
-        return (
-          <BreadcrumbAntd.Item key={`breadcrumb ${i}`}>
-            {item.navigateTo ? (
-              <a
-                onClick={() => {
-                  handleGoToClick(item.navigateTo || '');
-                }}
-              >
+    <BreadcrumbAntd
+      items={listBreadcrumb.map((item, index) => {
+        if (item.navigateTo) {
+          return {
+            title: (
+              <a key={`breadcrumb ${index}`} onClick={() => handleGoToClick(item.navigateTo || '')}>
                 {item.name}
               </a>
-            ) : (
-              item.name
-            )}
-          </BreadcrumbAntd.Item>
-        );
+            ),
+          };
+        } else {
+          return {
+            title: item.name,
+          };
+        }
       })}
-    </BreadcrumbAntd>
+    />
   );
 };
 

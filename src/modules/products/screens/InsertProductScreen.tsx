@@ -13,11 +13,11 @@ const InsertProductScreen = () => {
           navigateTo: ProductRoutesEnum.PRODUCT,
         },
         {
-          name: 'INSERIR PRODUTOS',
+          name: 'INSERIR PRODUTO',
         },
       ]}
     >
-      <h1>Página para inserir produtos</h1>
+      <h1>Página para inserir produto</h1>
     </Screen>
   );
 };
