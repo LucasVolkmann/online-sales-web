@@ -1,3 +1,5 @@
+import { Divider } from 'antd';
+
 import Breadcrumb, { ListBreadcrumb } from '../breadcromb/Breadcrumb';
 import { ScreenContainer } from './screen.style';
 
@@ -10,6 +12,7 @@ const Screen = ({ children, listBreadcrumb }: ScreenProps) => {
   return (
     <ScreenContainer>
       <Breadcrumb listBreadcrumb={listBreadcrumb} />
+      <Divider style={{ marginTop: '28px' }} />
       {children}
     </ScreenContainer>
   );
