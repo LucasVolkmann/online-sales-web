@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
@@ -8,68 +8,24 @@ import Select from '../../../shared/components/inputs/select/Select';
 import Screen from '../../../shared/components/screens/Screen';
 import { DisplayFlexJCSpaceAround } from '../../../shared/components/styles/display.style';
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
-import { URL_CATEGORY, URL_PRODUCT } from '../../../shared/constants/Urls';
-import { InsertProductDTOType } from '../../../shared/dtos/InsertProductDTOType.dto';
+import { URL_CATEGORY } from '../../../shared/constants/Urls';
 import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
-import { connectionAPI_POST } from '../../../shared/functions/connection/connectionAPI';
 import { useDataContext } from '../../../shared/hooks/useDataContext';
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext';
+import { useInsertProduct } from '../../../shared/hooks/useInsertProduct';
 import { useRequests } from '../../../shared/hooks/useRequests';
-import { ProductType } from '../../../shared/types/ProductType';
 import { ProductRoutesEnum } from '../routes';
 import { InsertProductScreenContainer, OutsideFormDivClass } from '../styles/insertProducts.style';
 
 const InsertProductScreen = () => {
-  const [insertProduct, setInsertProduct] = useState<InsertProductDTOType>({
-    name: '',
-    image: '',
-    price: 0,
-  });
-  const { categories, setCategories } = useDataContext();
-  const { setNotification } = useGlobalContext();
   const { request } = useRequests();
+  const { categories, setCategories } = useDataContext();
+  const { handleOnClick, handleInputChange, handleSelectChange, insertProduct, disabled, loading } =
+    useInsertProduct();
   const navigate = useNavigate();
 
   useEffect(() => {
     request(URL_CATEGORY, MethodsEnum.GET, setCategories);
   }, []);
-
-  const handleOnClick = async () => {
-    await connectionAPI_POST<ProductType>(URL_PRODUCT, insertProduct)
-      .then((res) => {
-        setNotification({
-          message: 'Sucesso!',
-          type: 'success',
-          description: `'${res.name}' foi inserido com sucesso!`,
-        });
-        navigate(ProductRoutesEnum.PRODUCT);
-      })
-      .catch((err) => {
-        setNotification({
-          message: 'Erro ao inserir produto.',
-          type: 'error',
-          description: err.message,
-        });
-      });
-  };
-
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: string,
-    isNumeric?: boolean,
-  ) => {
-    setInsertProduct({
-      ...insertProduct,
-      [value]: isNumeric ? Number(event.target.value) : event.target.value,
-    });
-  };
-
-  const handleSelectChange = (value: string) => {
-    setInsertProduct({
-      ...insertProduct,
-      categoryId: Number(value),
-    });
-  };
 
   return (
     <Screen
@@ -114,7 +70,13 @@ const InsertProductScreen = () => {
           />
           <DisplayFlexJCSpaceAround>
             <LimitedContainer width={150}>
-              <Button onClick={handleOnClick} margin="16px 0px 0px 0px" type="primary">
+              <Button
+                disabled={disabled}
+                loading={loading}
+                onClick={handleOnClick}
+                margin="16px 0px 0px 0px"
+                type="primary"
+              >
                 Inserir produto
               </Button>
             </LimitedContainer>
