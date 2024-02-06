@@ -2,12 +2,14 @@
   "name": "online-sales-web",
   "version": "0.0.0",
   "scripts": {
+    "backend:up": "cd ./../online-sales-backend && npm run docker:up && npm run start:prod",
+    "backend:docker:down": "cd ./../online-sales-backend && npm run docker:down",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
     "lint:format": "prettier  --log-level warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
-    "lint": "npm run lint:format && npm run lint:fix "
+    "lint": "npm run lint:format && npm run lint:fix"
   },
   "dependencies": {
     "antd": "^5.13.2",

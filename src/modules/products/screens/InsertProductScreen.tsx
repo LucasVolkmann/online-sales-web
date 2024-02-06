@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Input from '../../../shared/components/inputs/input/Input';
+import InputMoney from '../../../shared/components/inputs/inputMoney/InputMoney';
 import Select from '../../../shared/components/inputs/select/Select';
 import Screen from '../../../shared/components/screens/Screen';
 import { DisplayFlexJCSpaceAround } from '../../../shared/components/styles/display.style';
@@ -99,7 +100,7 @@ const InsertProductScreen = () => {
             margin="0px 0px 16px 0px"
             label="URL da imagem"
           />
-          <Input
+          <InputMoney
             value={insertProduct.price}
             onChange={(event) => handleInputChange(event, 'price', true)}
             margin="0px 0px 16px 0px"

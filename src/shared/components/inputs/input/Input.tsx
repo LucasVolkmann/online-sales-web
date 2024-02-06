@@ -2,14 +2,13 @@ import { Input as InputAntD, InputProps as InputPropsAntD } from 'antd';
 
 import { BoxInput, InputLabel } from './input.style';
 
-interface IProps extends InputPropsAntD {
+export interface InputProps extends InputPropsAntD {
   margin?: string;
-
   label?: string;
   isPassword?: boolean;
 }
 
-const Input = ({ label, margin, isPassword, ...props }: IProps) => {
+const Input = ({ label, margin, isPassword, ...props }: InputProps) => {
   return (
     <BoxInput style={{ margin }}>
       {label && <InputLabel>{label}</InputLabel>}
