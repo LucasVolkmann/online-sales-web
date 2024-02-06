@@ -11,5 +11,5 @@ export const HeaderContainer = styled.div`
 export const InsertButtonContainer = styled.div``;
 
 export const FilterInputContainer = styled.div`
-  max-width: 200px;
+  max-width: 250px;
 `;

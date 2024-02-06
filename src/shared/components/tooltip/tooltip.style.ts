@@ -18,10 +18,12 @@ export const TooltipContainer = styled.div`
   top: 35px;
   left: 35px;
 
+  width: 200px;
+  height: 200px;
   padding: 12px;
 
   background-color: rgba(0, 0, 0, 0.7);
 
-  border-radius: 12px;
+  border-radius: 20px;
   border-top-left-radius: 0px;
 `;
