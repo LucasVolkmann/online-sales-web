@@ -21,3 +21,8 @@ export const verifyLoggedIn = async () => {
   });
   return null;
 };
+
+export const logout = () => {
+  unsetAuthorizationToken();
+  location.href = LoginRoutesEnum.LOGIN;
+};

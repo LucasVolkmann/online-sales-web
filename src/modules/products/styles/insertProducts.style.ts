@@ -8,7 +8,7 @@ export const OutsideFormDivClass: React.CSSProperties = {
 };
 
 export const InsertProductScreenContainer = styled.div`
-  margin-top: 128px;
+  margin: 64px;
   display: flex;
   justify-content: center;
 `;

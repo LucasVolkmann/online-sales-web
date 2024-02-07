@@ -15,10 +15,6 @@ export const MenuContainer = styled.div`
   border-right: 1px solid #d3d3d3;
 
   width: 250px;
-
-  -webkit-box-shadow: 2px 0px 10px 0px rgba(138, 138, 138, 0.3);
-  -moz-box-shadow: 2px 0px 10px 0px rgba(138, 138, 138, 0.3);
-  box-shadow: 2px 0px 10px 0px rgba(138, 138, 138, 0.3);
 `;
 
 export const LogoNameContainer = styled.div`
@@ -27,7 +23,7 @@ export const LogoNameContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #d3d3d3;
 `;
 
 export const MenuLogo = styled(SVGLogo)`
