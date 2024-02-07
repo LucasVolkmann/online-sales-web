@@ -22,12 +22,14 @@ export const LogoNameContainer = styled.div`
 
   display: flex;
   justify-content: center;
+  align-items: center;
 
   border-bottom: 1px solid #d3d3d3;
 `;
 
 export const MenuLogo = styled(SVGLogo)`
-  height: 90%;
+  height: 50px;
+  width: 50px;
 `;
 
 export const MenuName = styled(Text)`
@@ -35,9 +37,9 @@ export const MenuName = styled(Text)`
 
   font-size: 2em;
   font-weight: bold;
-  text-shadow: -1px 2px 0px #555;
+  text-shadow: -2px 2px 0px #000;
   color: #ffc801;
 
   margin: auto 0;
-  margin-right: 15px;
+  margin-left: 15px;
 `;

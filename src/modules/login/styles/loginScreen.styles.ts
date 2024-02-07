@@ -14,7 +14,9 @@ export const BackgroundImage = styled.img`
   object-fit: cover;
 `;
 
-export const LoginTitle = styled(Title)``;
+export const LoginTitle = styled(Title)`
+  margin-top: 50px;
+`;
 
 export const ContainerLogin = styled.div`
   position: absolute;
@@ -29,7 +31,7 @@ export const ContainerLogin = styled.div`
 
   background-color: rgba(245, 245, 245, 1);
   border-left: 1px solid rgba(200, 200, 200, 1);
-  box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px 0px 10px rgba(0, 0, 0, 0.2);
 
   display: flex;
   align-items: center;
@@ -42,6 +44,4 @@ export const LimitedContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-bottom: 20%;
 `;
