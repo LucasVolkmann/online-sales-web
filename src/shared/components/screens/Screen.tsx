@@ -1,7 +1,8 @@
 import { Divider } from 'antd';
 
 import Breadcrumb, { ListBreadcrumb } from '../breadcromb/Breadcrumb';
-import { ScreenContainer } from './screen.style';
+import Menu from '../menu/Menu';
+import { MainContent, ScreenContainer } from './screen.style';
 
 interface ScreenProps {
   children: React.ReactNode;
@@ -11,9 +12,12 @@ interface ScreenProps {
 const Screen = ({ children, listBreadcrumb }: ScreenProps) => {
   return (
     <ScreenContainer>
-      <Breadcrumb listBreadcrumb={listBreadcrumb} />
-      <Divider style={{ marginTop: '28px' }} />
-      {children}
+      <Menu />
+      <MainContent>
+        <Breadcrumb listBreadcrumb={listBreadcrumb} />
+        <Divider />
+        {children}
+      </MainContent>
     </ScreenContainer>
   );
 };

@@ -43,7 +43,7 @@ const InsertProductScreen = () => {
       ]}
     >
       <InsertProductScreenContainer>
-        <LimitedContainer width={400} style={OutsideFormDivClass}>
+        <LimitedContainer width={'400px'} style={OutsideFormDivClass}>
           <Input
             value={insertProduct.name}
             onChange={(event) => handleInputChange(event, 'name')}
@@ -69,7 +69,7 @@ const InsertProductScreen = () => {
             options={categories.map((category) => ({ label: category.name, value: category.id }))}
           />
           <DisplayFlexJCSpaceAround>
-            <LimitedContainer width={150}>
+            <LimitedContainer width={'150px'}>
               <Button
                 disabled={disabled}
                 loading={loading}
@@ -80,7 +80,7 @@ const InsertProductScreen = () => {
                 Inserir produto
               </Button>
             </LimitedContainer>
-            <LimitedContainer width={150}>
+            <LimitedContainer width={'150px'}>
               <Button
                 danger
                 onClick={() => navigate(ProductRoutesEnum.PRODUCT)}

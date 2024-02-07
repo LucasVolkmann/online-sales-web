@@ -3,7 +3,6 @@ import { ConfigProvider } from 'antd';
 import { useEffect } from 'react';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 
-import { basicSetup } from './app.style.ts';
 import { firstScreenRouter } from './modules/firstScreen/routes';
 import { loginRouter } from './modules/login/routes';
 import { productRoutes } from './modules/products/routes';
@@ -35,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <div style={basicSetup}>
+    <div style={{ height: '100%' }}>
       {contextHolder}
       <ConfigProvider
         theme={{

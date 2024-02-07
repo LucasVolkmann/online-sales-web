@@ -5,7 +5,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding: 16px 0px;
+  padding-bottom: 16px;
 `;
 
 export const InsertButtonContainer = styled.div``;
