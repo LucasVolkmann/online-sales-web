@@ -1,3 +1,5 @@
+import { NavigateFunction, redirect } from 'react-router-dom';
+
 import { LoginRoutesEnum } from '../../../modules/login/routes';
 import { UserType } from '../../../modules/login/types/UserType';
 import { AUTHORIZATION_KEY } from '../../constants/authorizationConstants';
@@ -13,16 +15,16 @@ export const getAuthorizationToken = () => getItemStorage(AUTHORIZATION_KEY);
 
 export const verifyLoggedIn = async () => {
   if (!getAuthorizationToken()) {
-    location.href = LoginRoutesEnum.LOGIN;
+    return redirect(LoginRoutesEnum.LOGIN);
   }
   await connectionAPI_GET<UserType>(URL_USER).catch(() => {
     unsetAuthorizationToken();
-    location.href = LoginRoutesEnum.LOGIN;
+    return redirect(LoginRoutesEnum.LOGIN);
   });
   return null;
 };
 
-export const logout = () => {
+export const logout = (navigate: NavigateFunction) => {
   unsetAuthorizationToken();
-  location.href = LoginRoutesEnum.LOGIN;
+  navigate(LoginRoutesEnum.LOGIN);
 };

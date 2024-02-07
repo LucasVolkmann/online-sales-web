@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { NavigateFunction } from 'react-router-dom';
 
 import { AuthType } from '../../modules/login/types/AuthType';
+import { ProductRoutesEnum } from '../../modules/products/routes';
 import { URL_AUTH } from '../constants/Urls';
 import { MethodsEnum } from '../enumerations/methods.enum';
 import { setAuthorizationToken } from '../functions/connection/auth';
@@ -39,22 +41,16 @@ export const useRequests = () => {
     return response;
   };
 
-  const authRequest = async (body: any): Promise<void> => {
+  const authRequest = async (navigate: NavigateFunction, body: any): Promise<void> => {
     setLoading(true);
     await connectionAPI_POST<AuthType>(URL_AUTH, body)
       .then((result) => {
         if (result.accessToken) {
           setAuthorizationToken(result.accessToken);
-          setNotification({
-            message: 'Entering...',
-            type: 'success',
-          });
         } else {
-          throw new Error('Server Error.');
+          throw new Error('Server error.');
         }
-        //TODO: change to navigate()
-        // navigate(ProductRoutesEnum.PRODUCT);
-        location.href = 'http://localhost:5173/product';
+        navigate(ProductRoutesEnum.PRODUCT);
         return;
       })
       .catch((error) => {

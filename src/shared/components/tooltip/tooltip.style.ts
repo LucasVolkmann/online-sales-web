@@ -22,7 +22,7 @@ export const TooltipContainer = styled.div`
   height: 200px;
   padding: 12px;
 
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
 
   border-radius: 20px;
   border-top-left-radius: 0px;
