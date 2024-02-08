@@ -8,7 +8,9 @@ import {
 import type { MenuProps } from 'antd';
 import { Menu as MenuAntD } from 'antd';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { ProductRoutesEnum } from '../../../modules/products/routes';
 import { LogoNameContainer, MenuContainer, MenuLogo, MenuName } from './menu.style';
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -17,6 +19,7 @@ const rootSubmenuKeys = ['home', 'products', 'category', 'order', 'user'];
 
 const Menu = () => {
   const [openKeys, setOpenKeys] = useState(['']);
+  const navigate = useNavigate();
 
   const items: MenuItem[] = [
     {
@@ -30,14 +33,14 @@ const Menu = () => {
       icon: <LaptopOutlined />,
       children: [
         {
-          key: 'view',
+          key: 'product_view',
           label: 'Visualizar',
-          onClick: () => null,
+          onClick: () => navigate(ProductRoutesEnum.PRODUCT),
         },
         {
-          key: 'insert',
+          key: 'product_insert',
           label: 'Inserir',
-          onClick: () => null,
+          onClick: () => navigate(ProductRoutesEnum.PRODUCT_INSERT),
         },
       ],
     },
@@ -47,12 +50,12 @@ const Menu = () => {
       icon: <ProfileOutlined />,
       children: [
         {
-          key: 'view',
+          key: 'category_view',
           label: 'Visualizar',
           onClick: () => null,
         },
         {
-          key: 'insert',
+          key: 'category_insert',
           label: 'Inserir',
           onClick: () => null,
         },
