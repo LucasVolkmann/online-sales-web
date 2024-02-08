@@ -1,11 +1,11 @@
-import Search from 'antd/es/input/Search';
+import Search, { SearchProps } from 'antd/es/input/Search';
 
-interface FilterInputProps {
+interface FilterInputProps extends SearchProps {
   onSearch: (value: string) => void;
 }
 
-const FilterInput = ({ onSearch }: FilterInputProps) => {
-  return <Search placeholder="Buscar produto" onSearch={onSearch} enterButton />;
+const FilterInput = ({ onSearch, ...props }: FilterInputProps) => {
+  return <Search {...props} onSearch={onSearch} enterButton />;
 };
 
 export default FilterInput;

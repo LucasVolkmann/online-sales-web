@@ -5,12 +5,15 @@ import Input from '../../../shared/components/inputs/input/Input';
 import InputMoney from '../../../shared/components/inputs/inputMoney/InputMoney';
 import Select from '../../../shared/components/inputs/select/Select';
 import Screen from '../../../shared/components/screens/Screen';
-import { DisplayFlexJCSpaceAround } from '../../../shared/components/styles/display.style';
+import {
+  DisplayFlexJCSpaceAround,
+  DisplayFlexJustifyCenter,
+} from '../../../shared/components/styles/display.style';
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
 import { useInsertProduct } from '../../../shared/hooks/useInsertProduct';
 import { useCategory } from '../../categories/hooks/useCategory';
 import { ProductRoutesEnum } from '../routes';
-import { InsertProductScreenContainer, OutsideFormDivClass } from '../styles/insertProducts.style';
+import { OutsideFormDivClass } from '../styles/insertProducts.style';
 
 const InsertProductScreen = () => {
   const { categories } = useCategory();
@@ -33,7 +36,7 @@ const InsertProductScreen = () => {
         },
       ]}
     >
-      <InsertProductScreenContainer>
+      <DisplayFlexJustifyCenter margin="64px">
         <LimitedContainer width={'400px'} style={OutsideFormDivClass}>
           <Input
             value={insertProduct.name}
@@ -82,7 +85,7 @@ const InsertProductScreen = () => {
             </LimitedContainer>
           </DisplayFlexJCSpaceAround>
         </LimitedContainer>
-      </InsertProductScreenContainer>
+      </DisplayFlexJustifyCenter>
     </Screen>
   );
 };

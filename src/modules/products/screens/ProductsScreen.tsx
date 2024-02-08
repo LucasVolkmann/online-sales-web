@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Screen from '../../../shared/components/screens/Screen';
+import { DisplayFlexJCSpaceAround } from '../../../shared/components/styles/display.style';
+import { LimitedContainer } from '../../../shared/components/styles/limited.style';
 import Table from '../../../shared/components/tables/Table';
 import { URL_PRODUCT } from '../../../shared/constants/Urls';
 import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
@@ -15,11 +17,6 @@ import CategoryItem from '../components/CategoryItem';
 import FilterInput from '../components/FilterInput';
 import TooltipImage from '../components/TooltipImage';
 import { ProductRoutesEnum } from '../routes';
-import {
-  FilterInputContainer,
-  HeaderContainer,
-  InsertButtonContainer,
-} from '../styles/productScreen.styles';
 
 const columns: TableColumnsType<ProductType> = [
   {
@@ -90,16 +87,18 @@ export const ProductsScreen = () => {
   return (
     <>
       <Screen listBreadcrumb={breadcrumbList}>
-        <HeaderContainer>
-          <FilterInputContainer>
-            <FilterInput onSearch={handleOnSearch}></FilterInput>
-          </FilterInputContainer>
-          <InsertButtonContainer>
+        <DisplayFlexJCSpaceAround margin="0px 0px 24px">
+          <LimitedContainer width="300px">
+            <FilterInput placeholder="Buscar Produto" onSearch={handleOnSearch}></FilterInput>
+          </LimitedContainer>
+
+          <LimitedContainer width="250px">
             <Button type="primary" onClick={handleOnClickInsert}>
               Adicionar um novo produto
             </Button>
-          </InsertButtonContainer>
-        </HeaderContainer>
+          </LimitedContainer>
+        </DisplayFlexJCSpaceAround>
+
         <Table
           columns={columns}
           dataSource={filtProducts.map((p) => {
