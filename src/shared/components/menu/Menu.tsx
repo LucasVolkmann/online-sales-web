@@ -10,6 +10,8 @@ import { Menu as MenuAntD } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { CategoryEnum } from '../../../modules/categories/routes';
+import { FirstScreenEnum } from '../../../modules/firstScreen/routes';
 import { ProductRoutesEnum } from '../../../modules/products/routes';
 import { LogoNameContainer, MenuContainer, MenuLogo, MenuName } from './menu.style';
 
@@ -26,6 +28,7 @@ const Menu = () => {
       key: 'home',
       label: 'Principal',
       icon: <HomeOutlined />,
+      onClick: () => navigate(FirstScreenEnum.FIRST_PAGE),
     },
     {
       key: 'products',
@@ -52,12 +55,12 @@ const Menu = () => {
         {
           key: 'category_view',
           label: 'Visualizar',
-          onClick: () => null,
+          onClick: () => navigate(CategoryEnum.CATEGORY),
         },
         {
           key: 'category_insert',
           label: 'Inserir',
-          onClick: () => null,
+          onClick: () => navigate(CategoryEnum.CATEGORY_INSERT),
         },
       ],
     },

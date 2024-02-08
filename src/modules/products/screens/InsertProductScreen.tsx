@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
@@ -8,24 +7,16 @@ import Select from '../../../shared/components/inputs/select/Select';
 import Screen from '../../../shared/components/screens/Screen';
 import { DisplayFlexJCSpaceAround } from '../../../shared/components/styles/display.style';
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
-import { URL_CATEGORY } from '../../../shared/constants/Urls';
-import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
-import { useDataContext } from '../../../shared/hooks/useDataContext';
 import { useInsertProduct } from '../../../shared/hooks/useInsertProduct';
-import { useRequests } from '../../../shared/hooks/useRequests';
+import { useCategory } from '../../categories/hooks/useCategory';
 import { ProductRoutesEnum } from '../routes';
 import { InsertProductScreenContainer, OutsideFormDivClass } from '../styles/insertProducts.style';
 
 const InsertProductScreen = () => {
-  const { request } = useRequests();
-  const { categories, setCategories } = useDataContext();
+  const { categories } = useCategory();
   const { handleOnClick, handleInputChange, handleSelectChange, insertProduct, disabled, loading } =
     useInsertProduct();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    request(URL_CATEGORY, MethodsEnum.GET, setCategories);
-  }, []);
 
   return (
     <Screen

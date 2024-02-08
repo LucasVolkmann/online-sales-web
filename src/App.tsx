@@ -3,6 +3,7 @@ import { ConfigProvider } from 'antd';
 import { useEffect } from 'react';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 
+import { categoryRouter } from './modules/categories/routes';
 import { firstScreenRouter } from './modules/firstScreen/routes';
 import { loginRouter } from './modules/login/routes';
 import { productRoutes } from './modules/products/routes';
@@ -15,7 +16,11 @@ import { useRequests } from './shared/hooks/useRequests';
 
 const freeRoutes: RouteObject[] = [...loginRouter];
 
-const loggedInRoutes: RouteObject[] = [...firstScreenRouter, ...productRoutes].map((route) => ({
+const loggedInRoutes: RouteObject[] = [
+  ...categoryRouter,
+  ...firstScreenRouter,
+  ...productRoutes,
+].map((route) => ({
   ...route,
   loader: verifyLoggedIn,
 }));
