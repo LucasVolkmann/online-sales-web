@@ -1,6 +1,5 @@
 import { TableColumnsType } from 'antd';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Screen from '../../../shared/components/screens/Screen';
@@ -14,9 +13,6 @@ import { useRequests } from '../../../shared/hooks/useRequests';
 import { CategoryType } from '../../../shared/types/CategoryType';
 import FilterInput from '../../products/components/FilterInput';
 import { useCategory } from '../hooks/useCategory';
-import { CategoryEnum } from '../routes';
-
-const listBreadcrumb = [{ name: 'HOME' }, { name: 'CATEGORIES' }];
 
 const columns: TableColumnsType<CategoryType> = [
   {
@@ -40,25 +36,26 @@ const columns: TableColumnsType<CategoryType> = [
 ];
 
 const Category = () => {
-  const { products, setCategories } = useDataContext();
+  const { setCategories } = useDataContext();
   const { request } = useRequests();
-  const { categories } = useCategory();
-  const navigate = useNavigate();
+  const {
+    categories,
+    handleOnClickInsert,
+    handleOnSearch,
+    displayCategories,
+    setDisplayCategories,
+  } = useCategory();
 
   useEffect(() => {
-    request(URL_CATEGORY, MethodsEnum.GET, setCategories);
-  }, [products]);
+    request<CategoryType[]>(URL_CATEGORY, MethodsEnum.GET, setCategories);
+  }, []);
 
-  const handleOnSearch = (value: string) => {
-    console.log(value);
-  };
-
-  const handleOnClickInsert = () => {
-    navigate(CategoryEnum.CATEGORY_INSERT);
-  };
+  useEffect(() => {
+    setDisplayCategories([...categories]);
+  }, [categories]);
 
   return (
-    <Screen listBreadcrumb={listBreadcrumb}>
+    <Screen listBreadcrumb={[{ name: 'HOME' }, { name: 'CATEGORIAS' }]}>
       <DisplayFlexJCSpaceAround margin="0px 0px 24px">
         <LimitedContainer width="300px">
           <FilterInput placeholder="Buscar Categoria" onSearch={handleOnSearch} />
@@ -73,7 +70,7 @@ const Category = () => {
 
       <Table
         columns={columns}
-        dataSource={categories.map((p) => {
+        dataSource={displayCategories.map((p) => {
           return { ...p, key: p.id };
         })}
       />

@@ -9,11 +9,11 @@ import {
   DisplayFlexJCSpaceAround,
   DisplayFlexJustifyCenter,
 } from '../../../shared/components/styles/display.style';
+import { OutsideFormDivClass } from '../../../shared/components/styles/insertProducts.style';
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
 import { useInsertProduct } from '../../../shared/hooks/useInsertProduct';
 import { useCategory } from '../../categories/hooks/useCategory';
 import { ProductRoutesEnum } from '../routes';
-import { OutsideFormDivClass } from '../styles/insertProducts.style';
 
 const InsertProductScreen = () => {
   const { categories } = useCategory();

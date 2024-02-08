@@ -1,6 +1,6 @@
 import { Divider } from 'antd';
 
-import Breadcrumb, { ListBreadcrumb } from '../breadcromb/Breadcrumb';
+import Breadcrumb, { ListBreadcrumb } from '../breadcrumb/Breadcrumb';
 import Header from '../header/Header';
 import Menu from '../menu/Menu';
 import { ScreenContainer } from './screen.style';
