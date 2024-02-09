@@ -10,9 +10,9 @@ import Table from '../../../shared/components/tables/Table';
 import { URL_PRODUCT } from '../../../shared/constants/Urls';
 import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
 import { numberToCurrency } from '../../../shared/functions/numberToCurrency';
-import { useDataContext } from '../../../shared/hooks/useDataContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { ProductType } from '../../../shared/types/ProductType';
+import { useProductReducer } from '../../../store/reducers/productReducer/useProductReducer';
 import CategoryItem from '../components/CategoryItem';
 import FilterInput from '../components/FilterInput';
 import TooltipImage from '../components/TooltipImage';
@@ -57,7 +57,7 @@ const breadcrumbList = [
 ];
 
 export const ProductsScreen = () => {
-  const { products, setProducts } = useDataContext();
+  const { products, setProducts } = useProductReducer();
   const [filtProducts, setFiltProducts] = useState<ProductType[]>([]);
   const { request } = useRequests();
   const navigate = useNavigate();
