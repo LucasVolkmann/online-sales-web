@@ -7,5 +7,6 @@
   "files.eol": "\n",
   "cSpell.words": ["antd", "Appstore", "filt", "Filt"],
   "cSpell.language": "en,pt,pt-BR",
-  "terminal.integrated.fontSize": 8
+  "terminal.integrated.fontSize": 8,
+  "terminal.integrated.fontSize": 12
 }
