@@ -17,7 +17,7 @@ const Tooltip = ({ children, tooltip, title }: TooltipProps) => {
   return (
     <ExternalContainer>
       <TooltipContainer>{tooltip}</TooltipContainer>
-      {children}
+      <a>{children}</a>
     </ExternalContainer>
   );
 };

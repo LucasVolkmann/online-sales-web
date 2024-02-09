@@ -5,7 +5,7 @@ import {
   SafetyCertificateOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import type { MenuProps as MenuPropsAntD } from 'antd';
 import { Menu as MenuAntD } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ import { FirstScreenEnum } from '../../../modules/firstScreen/routes';
 import { ProductRoutesEnum } from '../../../modules/products/routes';
 import { LogoNameContainer, MenuContainer, MenuLogo, MenuName } from './menu.style';
 
-type MenuItem = Required<MenuProps>['items'][number];
+type MenuItem = Required<MenuPropsAntD>['items'][number];
 
 const rootSubmenuKeys = ['home', 'products', 'category', 'order', 'user'];
 
@@ -78,7 +78,7 @@ const Menu = () => {
     },
   ];
 
-  const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
+  const onOpenChange: MenuPropsAntD['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
     if (latestOpenKey && rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
       setOpenKeys(keys);

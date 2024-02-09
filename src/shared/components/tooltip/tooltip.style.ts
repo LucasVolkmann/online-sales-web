@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ExternalContainer = styled.div`
   position: relative;
+  width: fit-content;
 
   &:hover {
     div {
@@ -15,8 +16,8 @@ export const TooltipContainer = styled.div`
   z-index: 1;
 
   position: absolute;
-  top: 35px;
-  left: 35px;
+  top: calc(-94px - 50%);
+  left: calc(100% + 35px);
 
   width: 200px;
   height: 200px;
@@ -25,5 +26,26 @@ export const TooltipContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 
   border-radius: 20px;
-  border-top-left-radius: 0px;
+  &:after {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-right: 25px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 15px solid transparent;
+    content: ' ';
+    position: absolute;
+    top: calc(50% - 10px);
+    right: 100%;
+  }
+
+  @keyframes pop {
+    0% {
+      scale: 0;
+    }
+    100% {
+      scale: 1;
+    }
+  }
+
+  animation: pop 0.1s;
 `;
