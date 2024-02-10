@@ -12,7 +12,7 @@ export const BoxInput = styled.div`
 export const InputLabel = styled(Text)`
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 100%;
   line-height: 21px;
 
   color: rgba(100, 100, 100, 1);
