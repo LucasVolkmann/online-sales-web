@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 import { URL_CATEGORY } from '../../../shared/constants/Urls';
 import { connectionAPI_POST } from '../../../shared/functions/connection/connectionAPI';
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext';
 import { CategoryType } from '../../../shared/types/CategoryType';
+import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer';
 import { CategoryEnum } from '../routes';
 
 export const useInsertCategory = () => {
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [name, setName] = useState('');
-  const { setNotification } = useGlobalContext();
+  const { setNotification } = useGlobalReducer();
   const navigate = useNavigate();
 
   useEffect(() => {

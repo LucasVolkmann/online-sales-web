@@ -3,15 +3,15 @@ import { NavigateFunction } from 'react-router-dom';
 
 import { AuthType } from '../../modules/login/types/AuthType';
 import { ProductRoutesEnum } from '../../modules/products/routes';
+import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer';
 import { URL_AUTH } from '../constants/Urls';
 import { MethodsEnum } from '../enumerations/methods.enum';
 import { setAuthorizationToken } from '../functions/connection/auth';
 import ConnectionAPI, { connectionAPI_POST } from '../functions/connection/connectionAPI';
-import { useGlobalContext } from './useGlobalContext';
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false);
-  const { setNotification } = useGlobalContext();
+  const { setNotification, setUser } = useGlobalReducer();
   // const navigate = useNavigate();
 
   const request = async <T>(
@@ -46,6 +46,7 @@ export const useRequests = () => {
     await connectionAPI_POST<AuthType>(URL_AUTH, body)
       .then((result) => {
         if (result.accessToken) {
+          setUser(result.user);
           setAuthorizationToken(result.accessToken);
         } else {
           throw new Error('Server error.');

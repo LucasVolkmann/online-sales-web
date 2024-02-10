@@ -10,9 +10,9 @@ import { productRoutes } from './modules/products/routes';
 import { URL_USER } from './shared/constants/Urls';
 import { MethodsEnum } from './shared/enumerations/methods.enum';
 import { getAuthorizationToken, verifyLoggedIn } from './shared/functions/connection/auth';
-import { useGlobalContext } from './shared/hooks/useGlobalContext';
 import { useNotification } from './shared/hooks/useNotification';
 import { useRequests } from './shared/hooks/useRequests';
+import { useGlobalReducer } from './store/reducers/globalReducer/useGlobalReducer';
 
 const freeRoutes: RouteObject[] = [...loginRouter];
 
@@ -30,7 +30,7 @@ const router: RemixRouter = createBrowserRouter([...freeRoutes, ...loggedInRoute
 function App() {
   const { contextHolder } = useNotification();
   const { request } = useRequests();
-  const { setUser } = useGlobalContext();
+  const { setUser } = useGlobalReducer();
 
   useEffect(() => {
     if (getAuthorizationToken()) {

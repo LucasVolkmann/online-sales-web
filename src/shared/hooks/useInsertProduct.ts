@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ProductRoutesEnum } from '../../modules/products/routes';
+import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer';
 import { URL_PRODUCT } from '../constants/Urls';
 import { InsertProductDTOType } from '../dtos/InsertProductDTOType.dto';
 import { connectionAPI_POST } from '../functions/connection/connectionAPI';
 import { ProductType } from '../types/ProductType';
-import { useGlobalContext } from './useGlobalContext';
 
 export const useInsertProduct = () => {
   const [insertProduct, setInsertProduct] = useState<InsertProductDTOType>({
@@ -14,7 +14,7 @@ export const useInsertProduct = () => {
     image: '',
     price: 0,
   });
-  const { setNotification } = useGlobalContext();
+  const { setNotification } = useGlobalReducer();
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);

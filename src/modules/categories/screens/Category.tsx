@@ -8,9 +8,9 @@ import { LimitedContainer } from '../../../shared/components/styles/limited.styl
 import Table from '../../../shared/components/tables/Table';
 import { URL_CATEGORY } from '../../../shared/constants/Urls';
 import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
-import { useDataContext } from '../../../shared/hooks/useDataContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { CategoryType } from '../../../shared/types/CategoryType';
+import { useCategoryReducer } from '../../../store/reducers/categoryReducer/useCategoryReducer';
 import FilterInput from '../../products/components/FilterInput';
 import { useCategory } from '../hooks/useCategory';
 
@@ -36,7 +36,7 @@ const columns: TableColumnsType<CategoryType> = [
 ];
 
 const Category = () => {
-  const { setCategories } = useDataContext();
+  const { setCategories } = useCategoryReducer();
   const { request } = useRequests();
   const {
     categories,

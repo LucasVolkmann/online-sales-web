@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { URL_CATEGORY } from '../../../shared/constants/Urls';
 import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
-import { useDataContext } from '../../../shared/hooks/useDataContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { CategoryType } from '../../../shared/types/CategoryType';
+import { useCategoryReducer } from '../../../store/reducers/categoryReducer/useCategoryReducer';
 import { CategoryEnum } from '../routes';
 
 export const useCategory = () => {
   const [displayCategories, setDisplayCategories] = useState<CategoryType[]>([]);
-  const { categories, setCategories } = useDataContext();
+  const { categories, setCategories } = useCategoryReducer();
   const { request } = useRequests();
   const navigate = useNavigate();
 
