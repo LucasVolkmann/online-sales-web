@@ -1,8 +1,8 @@
-import { Input } from 'antd';
+import { Input, InputProps } from 'antd';
 
 const { Search } = Input;
 
-interface FilterInputProps {
+interface FilterInputProps extends InputProps {
   onSearch: (value: string) => void;
 }
 
