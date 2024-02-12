@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { logout } from '../../functions/connection/auth';
+import { HeaderTestIdEnum } from './__tests__/headerTestIdEnum';
 import { HeaderContainer, LogoutButton } from './header.style';
 
 const Header = () => {
@@ -23,8 +24,9 @@ const Header = () => {
   };
 
   return (
-    <HeaderContainer>
+    <>
       <Modal
+        data-testid={HeaderTestIdEnum.MODAL_TEST_ID}
         title="Você está saindo!"
         open={isModalOpen}
         onOk={handleOk}
@@ -34,8 +36,10 @@ const Header = () => {
       >
         <p>Tem certeza disso?</p>
       </Modal>
-      <LogoutButton onClick={showModal} />
-    </HeaderContainer>
+      <HeaderContainer data-testid={HeaderTestIdEnum.CONTAINER_TEST_ID}>
+        <LogoutButton data-testid={HeaderTestIdEnum.LOGOUT_BUTTON_TEST_ID} onClick={showModal} />
+      </HeaderContainer>
+    </>
   );
 };
 
