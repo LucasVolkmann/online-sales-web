@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
+import { InputTestIdEnum } from '../enum/inputTestIdEnum';
 import Input from '../Input';
-import { InputTestIdEnum } from './inputTestIdEnum';
 
 const TEST_ID = 'TEST_ID';
 const MARGIN = '25px';

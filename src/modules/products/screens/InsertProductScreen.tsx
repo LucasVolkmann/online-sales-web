@@ -13,6 +13,7 @@ import { OutsideFormDivClass } from '../../../shared/components/styles/insertPro
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
 import { useInsertProduct } from '../../../shared/hooks/useInsertProduct';
 import { useCategory } from '../../categories/hooks/useCategory';
+import { InsertProductScreenTestIdEnum } from '../enum/InsertProductScreenTestIdEnum';
 import { ProductRoutesEnum } from '../routes';
 
 const InsertProductScreen = () => {
@@ -37,26 +38,34 @@ const InsertProductScreen = () => {
       ]}
     >
       <DisplayFlexJustifyCenter margin="64px">
-        <LimitedContainer width={'400px'} style={OutsideFormDivClass}>
+        <LimitedContainer
+          data-testid={InsertProductScreenTestIdEnum.OUTSIDE_CONTAINER}
+          width={'400px'}
+          style={OutsideFormDivClass}
+        >
           <Input
+            data-testid={InsertProductScreenTestIdEnum.NAME_INPUT}
             value={insertProduct.name}
             onChange={(event) => handleInputChange(event, 'name')}
             margin="0px 0px 16px 0px"
             label="Nome"
           />
           <Input
+            data-testid={InsertProductScreenTestIdEnum.IMAGE_INPUT}
             value={insertProduct.image}
             onChange={(event) => handleInputChange(event, 'image')}
             margin="0px 0px 16px 0px"
             label="URL da imagem"
           />
           <InputMoney
+            data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
             value={insertProduct.price}
             onChange={(event) => handleInputChange(event, 'price', true)}
             margin="0px 0px 16px 0px"
             label="Preço"
           />
           <Select
+            data-testid={InsertProductScreenTestIdEnum.CATEGORY_SELECT}
             label="Categoria"
             margin="0px 0px 16px 0px"
             onChange={handleSelectChange}
@@ -65,6 +74,7 @@ const InsertProductScreen = () => {
           <DisplayFlexJCSpaceAround>
             <LimitedContainer width={'150px'}>
               <Button
+                data-testid={InsertProductScreenTestIdEnum.INSERT_BUTTON}
                 disabled={disabled}
                 loading={loading}
                 onClick={handleOnClick}
@@ -76,6 +86,7 @@ const InsertProductScreen = () => {
             </LimitedContainer>
             <LimitedContainer width={'150px'}>
               <Button
+                data-testid={InsertProductScreenTestIdEnum.CANCEL_BUTTON}
                 danger
                 onClick={() => navigate(ProductRoutesEnum.PRODUCT)}
                 margin="16px 0px 0px 0px"

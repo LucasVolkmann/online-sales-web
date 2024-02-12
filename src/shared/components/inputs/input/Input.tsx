@@ -1,6 +1,6 @@
 import { Input as InputAntD, InputProps as InputPropsAntD } from 'antd';
 
-import { InputTestIdEnum } from './__tests__/inputTestIdEnum';
+import { InputTestIdEnum } from './enum/inputTestIdEnum';
 import { BoxInput, InputLabel } from './input.style';
 
 export interface InputProps extends InputPropsAntD {
