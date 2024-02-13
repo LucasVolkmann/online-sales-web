@@ -5,13 +5,7 @@
   "eslint.validate": ["javascript"],
   "files.autoSave": "off",
   "files.eol": "\n",
-  "cSpell.words": [
-    "antd",
-    "Appstore",
-    "filt",
-    "Filt",
-    "testid"
-  ],
+  "cSpell.words": ["antd", "Appstore", "filt", "Filt", "testid"],
   "cSpell.language": "en,pt,pt-BR",
   "terminal.integrated.fontSize": 14
 }

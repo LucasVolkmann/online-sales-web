@@ -9,16 +9,16 @@ import { connectionAPI_POST } from '../functions/connection/connectionAPI';
 import { ProductType } from '../types/ProductType';
 
 export const useInsertProduct = () => {
+  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [insertProduct, setInsertProduct] = useState<InsertProductDTOType>({
     name: '',
     image: '',
     price: 0,
   });
+
   const { setNotification } = useGlobalReducer();
   const navigate = useNavigate();
-
-  const [loading, setLoading] = useState(false);
-  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     if (
