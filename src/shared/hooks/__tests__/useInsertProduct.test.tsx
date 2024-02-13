@@ -1,20 +1,23 @@
 import { renderHook } from '@testing-library/react-hooks';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import { act } from 'react-dom/test-utils';
 
+import { URL_PRODUCT } from '../../constants/Urls';
 import { useInsertProduct } from '../useInsertProduct';
-
-// import { useNavigate } from 'react-router-dom';
-// import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer';
 
 const mockNavigate = jest.fn();
 const mockSetNotification = jest.fn();
-
 jest.mock('react-router-dom', () => ({ useNavigate: () => mockNavigate }));
 jest.mock('../../../store/reducers/globalReducer/useGlobalReducer', () => ({
   useGlobalReducer: () => ({
     setNotification: mockSetNotification,
   }),
 }));
+
+const mockAxios = new MockAdapter(axios);
+
+mockAxios.onPost(URL_PRODUCT, {});
 
 describe('Test useInsertProduct', () => {
   it('should set up initial states', () => {
@@ -93,5 +96,17 @@ describe('Test useInsertProduct', () => {
       result.current.handleInputChange({ target: { value: '' } } as any, 'name');
     });
     expect(result.current.disabled).toBe(true);
+  });
+  it('should call axios.post with [insertProduct] in body', () => {
+    const spyAxios = jest.spyOn(axios, 'post');
+
+    const { result } = renderHook(() => useInsertProduct());
+
+    act(() => {
+      result.current.handleOnClick();
+    });
+
+    expect(spyAxios.mock.calls.length).toEqual(1);
+    expect(spyAxios.mock.calls[0][1]).toEqual(result.current.insertProduct);
   });
 });

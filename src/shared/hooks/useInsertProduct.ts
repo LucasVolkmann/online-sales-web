@@ -42,7 +42,6 @@ export const useInsertProduct = () => {
           type: 'success',
           description: `O produto '${res.name}' foi inserido com sucesso!`,
         });
-        setLoading(false);
         navigate(ProductRoutesEnum.PRODUCT);
       })
       .catch((err) => {
@@ -51,8 +50,8 @@ export const useInsertProduct = () => {
           type: 'error',
           description: err.message,
         });
-        setLoading(false);
       });
+    setLoading(false);
   };
 
   const handleInputChange = (
