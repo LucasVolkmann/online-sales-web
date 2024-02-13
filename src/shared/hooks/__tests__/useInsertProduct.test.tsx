@@ -66,4 +66,32 @@ describe('Test useInsertProduct', () => {
 
     expect(result.current.insertProduct.price).toEqual(Number(MOCK_VALUE));
   });
+  it('should only set [disabled] to false when all fields are filled in', () => {
+    const { result } = renderHook(() => useInsertProduct());
+
+    act(() => {
+      result.current.handleInputChange({ target: { value: 'mock name' } } as any, 'name');
+    });
+    expect(result.current.disabled).toBe(true);
+
+    act(() => {
+      result.current.handleInputChange({ target: { value: 'http mock image' } } as any, 'image');
+    });
+    expect(result.current.disabled).toBe(true);
+
+    act(() => {
+      result.current.handleInputChange({ target: { value: '12345' } } as any, 'price', true);
+    });
+    expect(result.current.disabled).toBe(true);
+
+    act(() => {
+      result.current.handleSelectChange('3');
+    });
+    expect(result.current.disabled).toBe(false);
+
+    act(() => {
+      result.current.handleInputChange({ target: { value: '' } } as any, 'name');
+    });
+    expect(result.current.disabled).toBe(true);
+  });
 });
