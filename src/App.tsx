@@ -6,6 +6,7 @@ import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-d
 import { categoryRouter } from './modules/categories/routes';
 import { firstScreenRouter } from './modules/firstScreen/routes';
 import { loginRouter } from './modules/login/routes';
+import { orderRoutes } from './modules/orders/routes';
 import { productRoutes } from './modules/products/routes';
 import { URL_USER } from './shared/constants/Urls';
 import { MethodsEnum } from './shared/enumerations/methods.enum';
@@ -20,6 +21,7 @@ const loggedInRoutes: RouteObject[] = [
   ...categoryRouter,
   ...firstScreenRouter,
   ...productRoutes,
+  ...orderRoutes,
 ].map((route) => ({
   ...route,
   loader: verifyLoggedIn,

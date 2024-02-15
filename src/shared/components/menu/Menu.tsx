@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { CategoryEnum } from '../../../modules/categories/routes';
 import { FirstScreenEnum } from '../../../modules/firstScreen/routes';
+import { OrderRoutesEnum } from '../../../modules/orders/routes';
 import { ProductRoutesEnum } from '../../../modules/products/routes';
 import { LogoNameContainer, MenuContainer, MenuLogo, MenuName } from './menu.style';
 
@@ -68,13 +69,12 @@ const Menu = () => {
       key: 'order',
       label: 'Pedidos',
       icon: <SafetyCertificateOutlined />,
-      children: [],
+      onClick: () => navigate(OrderRoutesEnum.ORDER),
     },
     {
       key: 'user',
       label: 'Usuários',
       icon: <UserOutlined />,
-      children: [],
     },
   ];
 
