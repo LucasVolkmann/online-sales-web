@@ -50,9 +50,9 @@ const OrderScreen = () => {
       ]}
     >
       <Table
-        onRow={() => {
+        onRow={(record) => {
           return {
-            onClick: () => navigate(OrderRoutesEnum.ORDER_ID),
+            onClick: () => navigate(`${OrderRoutesEnum.ORDER}/${record.id}`),
           };
         }}
         columns={columns}

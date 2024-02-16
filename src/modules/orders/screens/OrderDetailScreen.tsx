@@ -1,7 +1,9 @@
 import { Badge, DescriptionsProps, Divider } from 'antd';
+import { useParams } from 'react-router-dom';
 
 import Screen from '../../../shared/components/screens/Screen';
 import Descriptions from '../../../shared/components/tables/Descriptions';
+import { useOrderDetail } from '../hooks/useOrderDetail';
 import { OrderRoutesEnum } from '../routes';
 
 const userItems: DescriptionsProps['items'] = [
@@ -89,6 +91,9 @@ const addressItems: DescriptionsProps['items'] = [
 const productItems: DescriptionsProps['items'] = [];
 
 const OrderDetailScreen = () => {
+  const { orderId } = useParams<{ orderId: string }>();
+  const { detailedOrder } = useOrderDetail(orderId);
+
   return (
     <Screen
       listBreadcrumb={[

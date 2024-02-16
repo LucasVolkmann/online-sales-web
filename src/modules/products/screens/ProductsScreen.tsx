@@ -99,12 +99,7 @@ export const ProductsScreen = () => {
           </LimitedContainer>
         </DisplayFlexJCSpaceAround>
 
-        <Table
-          columns={columns}
-          dataSource={filtProducts.map((p) => {
-            return { ...p, key: p.id };
-          })}
-        />
+        <Table columns={columns} dataSource={filtProducts} />
       </Screen>
     </>
   );
