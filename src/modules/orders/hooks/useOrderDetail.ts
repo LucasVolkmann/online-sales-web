@@ -8,7 +8,7 @@ import { useOrderReducer } from '../../../store/reducers/orderReducer/useOrderRe
 
 export const useOrderDetail = (orderId?: string) => {
   const { detailedOrder, setDetailedOrder } = useOrderReducer();
-  const { request } = useRequests();
+  const { request, loading } = useRequests();
   const { setNotification } = useGlobalReducer();
 
   useEffect(() => {
@@ -23,6 +23,7 @@ export const useOrderDetail = (orderId?: string) => {
   }, []);
 
   return {
+    loading,
     detailedOrder,
   };
 };

@@ -3,10 +3,11 @@ import { Descriptions as DescriptionsAntD, DescriptionsProps as DescriptionsProp
 interface DescriptionsProps {
   items: DescriptionsPropsAntD['items'];
   title: string;
+  bordered?: boolean;
 }
 
-const Descriptions = ({ items, title, ...props }: DescriptionsProps) => {
-  return <DescriptionsAntD title={title} bordered items={items} {...props} />;
+const Descriptions = ({ items, title, bordered, ...props }: DescriptionsProps) => {
+  return <DescriptionsAntD title={title} bordered={bordered} items={items} {...props} />;
 };
 
 export default Descriptions;
