@@ -1,9 +1,11 @@
 import { TableColumnsType } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 import Screen from '../../../shared/components/screens/Screen';
 import Table from '../../../shared/components/tables/Table';
 import { OrderType } from '../../../shared/types/OrderType';
 import { useOrder } from '../hooks/useOrder';
+import { OrderRoutesEnum } from '../routes';
 
 const columns: TableColumnsType<OrderType> = [
   {
@@ -34,6 +36,7 @@ const columns: TableColumnsType<OrderType> = [
 
 const OrderScreen = () => {
   const { orders } = useOrder();
+  const navigate = useNavigate();
 
   return (
     <Screen
@@ -46,7 +49,15 @@ const OrderScreen = () => {
         },
       ]}
     >
-      <Table columns={columns} dataSource={orders} />
+      <Table
+        onRow={() => {
+          return {
+            onClick: () => navigate(OrderRoutesEnum.ORDER_ID),
+          };
+        }}
+        columns={columns}
+        dataSource={orders}
+      />
     </Screen>
   );
 };
