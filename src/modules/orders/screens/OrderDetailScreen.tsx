@@ -1,9 +1,13 @@
 import { Badge, Divider, Spin } from 'antd';
+import { Typography } from 'antd';
 import { useParams } from 'react-router-dom';
+const { Title } = Typography;
 
 import Screen from '../../../shared/components/screens/Screen';
 import { DisplayFlexJustifyCenter } from '../../../shared/components/styles/display.style';
 import Descriptions from '../../../shared/components/tables/Descriptions';
+import { numberToCurrency } from '../../../shared/functions/numberToCurrency';
+import OrderProductList from '../components/OrderProductsList';
 import { useOrderDetail } from '../hooks/useOrderDetail';
 import { OrderRoutesEnum } from '../routes';
 
@@ -98,18 +102,18 @@ const OrderDetailScreen = () => {
               {
                 key: '3',
                 label: 'Preço',
-                children: detailedOrder.payment?.price,
+                children: numberToCurrency(detailedOrder.payment?.price || 0),
               },
               {
                 key: '4',
                 label: 'Desconto',
                 span: 2,
-                children: detailedOrder.payment?.discount,
+                children: numberToCurrency(detailedOrder.payment?.discount || 0),
               },
               {
                 key: '5',
                 label: 'Preço final',
-                children: detailedOrder.payment?.finalPrice,
+                children: numberToCurrency(detailedOrder.payment?.finalPrice || 0),
               },
             ]}
           />
@@ -148,7 +152,8 @@ const OrderDetailScreen = () => {
             ]}
           />
           <Divider />
-          <Descriptions bordered={true} title="Lista de Produtos" items={[]} />
+          <Title level={5}>Lista de produtos</Title>
+          <OrderProductList orderProducts={detailedOrder.ordersProduct} />
         </>
       )}
     </Screen>
