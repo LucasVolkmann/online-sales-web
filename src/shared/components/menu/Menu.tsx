@@ -19,7 +19,7 @@ import { LogoNameContainer, MenuContainer, MenuLogo, MenuName } from './menu.sty
 
 type MenuItem = Required<MenuPropsAntD>['items'][number];
 
-const rootSubmenuKeys = ['home', 'products', 'category', 'order', 'user'];
+const rootSubmenuKeys = ['home', 'product', 'category', 'order', 'user'];
 
 interface MenuProps {
   currentPage?: string;
@@ -80,7 +80,18 @@ const Menu = ({ currentPage }: MenuProps) => {
       key: 'user',
       label: 'Usuários',
       icon: <UserOutlined />,
-      onClick: () => navigate(UserRoutesEnum.USER),
+      children: [
+        {
+          key: 'user_view',
+          label: 'Visualizar',
+          onClick: () => navigate(UserRoutesEnum.USER),
+        },
+        {
+          key: 'user_insert',
+          label: 'Inserir',
+          onClick: () => navigate(UserRoutesEnum.USER_INSERT),
+        },
+      ],
     },
   ];
 
