@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
-import { AuthType } from '../../modules/login/types/AuthType';
 import { ProductRoutesEnum } from '../../modules/products/routes';
 import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer';
 import { URL_AUTH } from '../constants/Urls';
 import { MethodsEnum } from '../enumerations/methods.enum';
 import { setAuthorizationToken } from '../functions/connection/auth';
 import ConnectionAPI, { connectionAPI_POST } from '../functions/connection/connectionAPI';
+import { AuthType } from '../types/AuthType';
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false);
