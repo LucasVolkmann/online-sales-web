@@ -18,6 +18,7 @@ const InsertCategory = () => {
 
   return (
     <Screen
+      menuCurrentPage="category"
       listBreadcrumb={[
         { name: 'HOME' },
         { name: 'CATEGORIAS', navigateTo: CategoryEnum.CATEGORY },

@@ -30,6 +30,7 @@ const OrderDetailScreen = () => {
 
   return (
     <Screen
+      menuCurrentPage="order"
       listBreadcrumb={[
         {
           name: 'HOME',

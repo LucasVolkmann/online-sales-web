@@ -20,8 +20,12 @@ type MenuItem = Required<MenuPropsAntD>['items'][number];
 
 const rootSubmenuKeys = ['home', 'products', 'category', 'order', 'user'];
 
-const Menu = () => {
-  const [openKeys, setOpenKeys] = useState(['']);
+interface MenuProps {
+  currentPage?: string;
+}
+
+const Menu = ({ currentPage }: MenuProps) => {
+  const [openKeys, setOpenKeys] = useState([currentPage || '']);
   const navigate = useNavigate();
 
   const items: MenuItem[] = [

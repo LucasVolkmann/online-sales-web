@@ -24,6 +24,7 @@ const InsertProductScreen = () => {
 
   return (
     <Screen
+      menuCurrentPage="products"
       listBreadcrumb={[
         {
           name: 'HOME',

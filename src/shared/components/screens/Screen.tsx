@@ -8,14 +8,15 @@ import { ScreenContainer } from './screen.style';
 interface ScreenProps {
   children: React.ReactNode;
   listBreadcrumb: ListBreadcrumb[];
+  menuCurrentPage?: string;
 }
 
-const Screen = ({ children, listBreadcrumb }: ScreenProps) => {
+const Screen = ({ children, listBreadcrumb, menuCurrentPage }: ScreenProps) => {
   return (
     <>
       <Header />
       <ScreenContainer>
-        <Menu />
+        <Menu currentPage={menuCurrentPage} />
         <Breadcrumb listBreadcrumb={listBreadcrumb} />
         <Divider />
         {children}

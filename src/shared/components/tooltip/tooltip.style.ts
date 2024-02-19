@@ -47,5 +47,5 @@ export const TooltipContainer = styled.div`
     }
   }
 
-  animation: pop 0.1s;
+  animation: pop 0.07s;
 `;

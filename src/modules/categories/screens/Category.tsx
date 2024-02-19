@@ -55,7 +55,7 @@ const Category = () => {
   }, [categories]);
 
   return (
-    <Screen listBreadcrumb={[{ name: 'HOME' }, { name: 'CATEGORIAS' }]}>
+    <Screen listBreadcrumb={[{ name: 'HOME' }, { name: 'CATEGORIAS' }]} menuCurrentPage="category">
       <DisplayFlexJCSpaceAround margin="0px 0px 24px">
         <LimitedContainer width="300px">
           <FilterInput placeholder="Buscar Categoria" onSearch={handleOnSearch} />
