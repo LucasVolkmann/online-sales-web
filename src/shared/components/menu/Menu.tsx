@@ -14,6 +14,7 @@ import { CategoryEnum } from '../../../modules/categories/routes';
 import { FirstScreenEnum } from '../../../modules/firstScreen/routes';
 import { OrderRoutesEnum } from '../../../modules/orders/routes';
 import { ProductRoutesEnum } from '../../../modules/products/routes';
+import { UserRoutesEnum } from '../../../modules/users/routes';
 import { LogoNameContainer, MenuContainer, MenuLogo, MenuName } from './menu.style';
 
 type MenuItem = Required<MenuPropsAntD>['items'][number];
@@ -36,7 +37,7 @@ const Menu = ({ currentPage }: MenuProps) => {
       onClick: () => navigate(FirstScreenEnum.FIRST_PAGE),
     },
     {
-      key: 'products',
+      key: 'product',
       label: 'Produtos',
       icon: <LaptopOutlined />,
       children: [
@@ -79,6 +80,7 @@ const Menu = ({ currentPage }: MenuProps) => {
       key: 'user',
       label: 'Usuários',
       icon: <UserOutlined />,
+      onClick: () => navigate(UserRoutesEnum.USER),
     },
   ];
 

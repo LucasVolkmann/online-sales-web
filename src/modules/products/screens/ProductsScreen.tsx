@@ -86,7 +86,7 @@ export const ProductsScreen = () => {
 
   return (
     <>
-      <Screen listBreadcrumb={breadcrumbList} menuCurrentPage="products">
+      <Screen listBreadcrumb={breadcrumbList} menuCurrentPage="product">
         <DisplayFlexJCSpaceAround margin="0px 0px 24px">
           <LimitedContainer width="300px">
             <FilterInput placeholder="Buscar Produto" onSearch={handleOnSearch}></FilterInput>
