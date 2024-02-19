@@ -6,7 +6,10 @@ const { Title } = Typography;
 import Screen from '../../../shared/components/screens/Screen';
 import { DisplayFlexJustifyCenter } from '../../../shared/components/styles/display.style';
 import Descriptions from '../../../shared/components/tables/Descriptions';
+import { maskCEP } from '../../../shared/functions/address';
+import { maskCpf } from '../../../shared/functions/cpf';
 import { numberToCurrency } from '../../../shared/functions/numberToCurrency';
+import { maskPhone } from '../../../shared/functions/phone';
 import OrderProductList from '../components/OrderProductsList';
 import { useOrderDetail } from '../hooks/useOrderDetail';
 import { OrderRoutesEnum } from '../routes';
@@ -63,7 +66,7 @@ const OrderDetailScreen = () => {
               {
                 key: '2',
                 label: 'CPF',
-                children: detailedOrder.user?.cpf,
+                children: maskCpf(detailedOrder.user?.cpf),
               },
               {
                 key: '3',
@@ -74,7 +77,7 @@ const OrderDetailScreen = () => {
               {
                 key: '4',
                 label: 'Telefone',
-                children: detailedOrder.user?.phone,
+                children: maskPhone(detailedOrder.user?.phone),
               },
             ]}
           />
@@ -126,7 +129,7 @@ const OrderDetailScreen = () => {
                 key: '1',
                 label: 'CEP',
                 span: 2,
-                children: detailedOrder.address?.cep,
+                children: maskCEP(detailedOrder.address?.cep || ''),
               },
               {
                 key: '2',
