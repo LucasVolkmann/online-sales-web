@@ -17,6 +17,7 @@ export const HeaderContainer = styled.header`
 
 export const LogoutButton = styled(LogoutOutlined)`
   margin-right: ${(75 - 24) / 2}px;
+  margin-left: ${(75 - 24) / 2}px;
   color: #777;
   font-size: 24px;
 
@@ -24,5 +25,19 @@ export const LogoutButton = styled(LogoutOutlined)`
     color: #ffc801;
     font-size: 28px;
     margin-right: ${(75 - 28) / 2}px;
+    margin-left: ${(75 - 28) / 2}px;
+  }
+`;
+
+export const Greeting = styled.h3`
+  color: gray;
+  font-weight: 400;
+`;
+
+export const Username = styled.a`
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
   }
 `;
