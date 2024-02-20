@@ -20,6 +20,10 @@ export const useCategory = () => {
     }
   }, []);
 
+  useEffect(() => {
+    setDisplayCategories([...categories]);
+  }, [categories]);
+
   const handleOnSearch = (value: string) => {
     if (!value) {
       setDisplayCategories([...categories]);

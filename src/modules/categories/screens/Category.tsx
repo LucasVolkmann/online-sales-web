@@ -38,21 +38,11 @@ const columns: TableColumnsType<CategoryType> = [
 const Category = () => {
   const { setCategories } = useCategoryReducer();
   const { request } = useRequests();
-  const {
-    categories,
-    handleOnClickInsert,
-    handleOnSearch,
-    displayCategories,
-    setDisplayCategories,
-  } = useCategory();
+  const { handleOnClickInsert, handleOnSearch, displayCategories } = useCategory();
 
   useEffect(() => {
     request<CategoryType[]>(URL_CATEGORY, MethodsEnum.GET, setCategories);
   }, []);
-
-  useEffect(() => {
-    setDisplayCategories([...categories]);
-  }, [categories]);
 
   return (
     <Screen listBreadcrumb={[{ name: 'HOME' }, { name: 'CATEGORIAS' }]} menuCurrentPage="category">

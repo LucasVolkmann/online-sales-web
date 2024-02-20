@@ -8,6 +8,8 @@ export const URL_USER_ADMIN = 'http://localhost:8080/user/admin';
 
 export const URL_PRODUCT = 'http://localhost:8080/product';
 
+export const URL_PRODUCT_ID = 'http://localhost:8080/product/{productId}';
+
 export const URL_CATEGORY = 'http://localhost:8080/category';
 
 export const URL_ORDER = 'http://localhost:8080/order';
