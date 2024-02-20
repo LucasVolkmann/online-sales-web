@@ -51,18 +51,13 @@ const columns: TableColumnsType<UserType> = [
 ];
 
 const UserScreen = () => {
-  const { filtUsers, setFiltUsers, users, setUsers, handleOnSearch, handleInsertAdminOnClick } =
-    useUser();
+  const { filtUsers, setUsers, handleOnSearch, handleInsertAdminOnClick } = useUser();
   const userData = useMemo(() => getTokenUserData(), []);
   const { request } = useRequests();
 
   useEffect(() => {
     request(URL_USER_ALL, MethodsEnum.GET, setUsers);
   }, []);
-
-  useEffect(() => {
-    setFiltUsers(users);
-  }, [users]);
 
   return (
     <Screen menuCurrentPage="user" listBreadcrumb={[{ name: 'HOME' }, { name: 'USUÁRIOS' }]}>

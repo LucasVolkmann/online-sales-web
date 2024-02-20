@@ -15,9 +15,7 @@ export const useCategory = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!categories || categories.length === 0) {
-      request(URL_CATEGORY, MethodsEnum.GET, setCategories);
-    }
+    request<CategoryType[]>(URL_CATEGORY, MethodsEnum.GET, setCategories);
   }, []);
 
   useEffect(() => {

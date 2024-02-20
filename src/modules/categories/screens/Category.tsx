@@ -1,16 +1,11 @@
 import { TableColumnsType } from 'antd';
-import { useEffect } from 'react';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Screen from '../../../shared/components/screens/Screen';
 import { DisplayFlexJCSpaceAround } from '../../../shared/components/styles/display.style';
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
 import Table from '../../../shared/components/tables/Table';
-import { URL_CATEGORY } from '../../../shared/constants/Urls';
-import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
-import { useRequests } from '../../../shared/hooks/useRequests';
 import { CategoryType } from '../../../shared/types/CategoryType';
-import { useCategoryReducer } from '../../../store/reducers/categoryReducer/useCategoryReducer';
 import FilterInput from '../../products/components/FilterInput';
 import { useCategory } from '../hooks/useCategory';
 
@@ -36,13 +31,7 @@ const columns: TableColumnsType<CategoryType> = [
 ];
 
 const Category = () => {
-  const { setCategories } = useCategoryReducer();
-  const { request } = useRequests();
   const { handleOnClickInsert, handleOnSearch, displayCategories } = useCategory();
-
-  useEffect(() => {
-    request<CategoryType[]>(URL_CATEGORY, MethodsEnum.GET, setCategories);
-  }, []);
 
   return (
     <Screen listBreadcrumb={[{ name: 'HOME' }, { name: 'CATEGORIAS' }]} menuCurrentPage="category">

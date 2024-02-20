@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { UserTypeEnum } from '../../../shared/enumerations/userType.enum';
@@ -11,6 +11,10 @@ export const useUser = () => {
   const navigate = useNavigate();
   const { users, setUsers } = useUserReducer();
   const [filtUsers, setFiltUsers] = useState<UserType[]>([]);
+
+  useEffect(() => {
+    setFiltUsers(users);
+  }, [users]);
 
   const handleOnSearch = (value: string) => {
     if (!value) {
