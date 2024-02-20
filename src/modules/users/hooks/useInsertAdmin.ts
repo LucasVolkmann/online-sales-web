@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { URL_USER } from '../../../shared/constants/Urls';
+import { URL_USER_ADMIN } from '../../../shared/constants/Urls';
 import { InsertAdminDTOType } from '../../../shared/dtos/InsertAdminDTOType';
 import { connectionAPI_POST } from '../../../shared/functions/connection/connectionAPI';
 import { UserType } from '../../../shared/types/UserType';
@@ -39,7 +39,7 @@ export const useInsertAdmin = () => {
 
   const handleOnClick = async () => {
     setLoading(true);
-    await connectionAPI_POST<UserType>(URL_USER, insertAdmin)
+    await connectionAPI_POST<UserType>(URL_USER_ADMIN, insertAdmin)
       .then((res) => {
         setNotification({
           message: `Usuário '${res.name}' foi criado com sucesso!`,

@@ -1,15 +1,18 @@
 import { TableColumnsType } from 'antd';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Screen from '../../../shared/components/screens/Screen';
 import { DisplayFlexJCSpaceAround } from '../../../shared/components/styles/display.style';
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
 import Table from '../../../shared/components/tables/Table';
+import { URL_USER_ALL } from '../../../shared/constants/Urls';
+import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
 import { UserTypeEnum } from '../../../shared/enumerations/userType.enum';
 import { getTokenUserData } from '../../../shared/functions/connection/auth';
 import { maskCpf } from '../../../shared/functions/cpf';
 import { maskPhone } from '../../../shared/functions/phone';
+import { useRequests } from '../../../shared/hooks/useRequests';
 import { UserType } from '../../../shared/types/UserType';
 import FilterInput from '../../products/components/FilterInput';
 import { useUser } from '../hooks/useUser';
@@ -48,8 +51,18 @@ const columns: TableColumnsType<UserType> = [
 ];
 
 const UserScreen = () => {
-  const { filtUsers, handleOnSearch, handleInsertAdminOnClick } = useUser();
+  const { filtUsers, setFiltUsers, users, setUsers, handleOnSearch, handleInsertAdminOnClick } =
+    useUser();
   const userData = useMemo(() => getTokenUserData(), []);
+  const { request } = useRequests();
+
+  useEffect(() => {
+    request(URL_USER_ALL, MethodsEnum.GET, setUsers);
+  }, []);
+
+  useEffect(() => {
+    setFiltUsers(users);
+  }, [users]);
 
   return (
     <Screen menuCurrentPage="user" listBreadcrumb={[{ name: 'HOME' }, { name: 'USUÁRIOS' }]}>

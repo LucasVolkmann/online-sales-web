@@ -14,7 +14,7 @@ import { LimitedContainer } from '../../../shared/components/styles/limited.styl
 import { useInsertAdmin } from '../hooks/useInsertAdmin';
 import { UserRoutesEnum } from '../routes';
 
-const NOT_IMPLEMENTED = true;
+const NOT_IMPLEMENTED = false;
 
 const InsertAdminScreen = () => {
   const navigate = useNavigate();
