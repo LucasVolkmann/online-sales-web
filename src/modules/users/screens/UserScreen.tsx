@@ -1,18 +1,18 @@
 import { TableColumnsType } from 'antd';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useMemo } from 'react';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Screen from '../../../shared/components/screens/Screen';
 import { DisplayFlexJCSpaceAround } from '../../../shared/components/styles/display.style';
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
 import Table from '../../../shared/components/tables/Table';
+import { UserTypeEnum } from '../../../shared/enumerations/userType.enum';
+import { getTokenUserData } from '../../../shared/functions/connection/auth';
 import { maskCpf } from '../../../shared/functions/cpf';
 import { maskPhone } from '../../../shared/functions/phone';
 import { UserType } from '../../../shared/types/UserType';
 import FilterInput from '../../products/components/FilterInput';
 import { useUser } from '../hooks/useUser';
-import { UserRoutesEnum } from '../routes';
 
 const columns: TableColumnsType<UserType> = [
   {
@@ -48,21 +48,8 @@ const columns: TableColumnsType<UserType> = [
 ];
 
 const UserScreen = () => {
-  const navigate = useNavigate();
-  const { users } = useUser();
-  const [filtUsers, setFiltUsers] = useState<UserType[]>([]);
-
-  useEffect(() => {
-    setFiltUsers(users);
-  }, [users]);
-
-  const handleOnSearch = (value: string) => {
-    if (!value) {
-      setFiltUsers(users);
-    } else {
-      setFiltUsers(users.filter((user) => user.name.toLowerCase().includes(value.toLowerCase())));
-    }
-  };
+  const { filtUsers, handleOnSearch, handleInsertAdminOnClick } = useUser();
+  const userData = useMemo(() => getTokenUserData(), []);
 
   return (
     <Screen menuCurrentPage="user" listBreadcrumb={[{ name: 'HOME' }, { name: 'USUÁRIOS' }]}>
@@ -72,9 +59,11 @@ const UserScreen = () => {
         </LimitedContainer>
 
         <LimitedContainer width="250px">
-          <Button type="primary" onClick={() => navigate(UserRoutesEnum.USER_INSERT)}>
-            Adicionar um novo usuário
-          </Button>
+          {userData?.typeUser == UserTypeEnum.ROOT && (
+            <Button type="primary" onClick={() => handleInsertAdminOnClick(userData)}>
+              Adicionar um novo administrador
+            </Button>
+          )}
         </LimitedContainer>
       </DisplayFlexJCSpaceAround>
       <Table columns={columns} dataSource={filtUsers}></Table>

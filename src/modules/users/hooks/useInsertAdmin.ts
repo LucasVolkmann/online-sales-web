@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { URL_USER } from '../../../shared/constants/Urls';
-import { InsertUserDTOType } from '../../../shared/dtos/InsertUserDTOType';
+import { InsertAdminDTOType } from '../../../shared/dtos/InsertAdminDTOType';
 import { connectionAPI_POST } from '../../../shared/functions/connection/connectionAPI';
 import { UserType } from '../../../shared/types/UserType';
 import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer';
 import { UserRoutesEnum } from '../routes';
 
-export const useInsertUser = () => {
-  const [insertUser, setUser] = useState<InsertUserDTOType>({
+export const useInsertAdmin = () => {
+  const [insertAdmin, setUser] = useState<InsertAdminDTOType>({
     name: '',
     email: '',
     phone: '',
@@ -22,24 +22,24 @@ export const useInsertUser = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const { name, cpf, email, password, phone } = insertUser;
+    const { name, cpf, email, password, phone } = insertAdmin;
     if (name && cpf && email && password && phone) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [insertUser]);
+  }, [insertAdmin]);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>, field: string) => {
     setUser({
-      ...insertUser,
+      ...insertAdmin,
       [field]: event.target.value,
     });
   };
 
   const handleOnClick = async () => {
     setLoading(true);
-    await connectionAPI_POST<UserType>(URL_USER, insertUser)
+    await connectionAPI_POST<UserType>(URL_USER, insertAdmin)
       .then((res) => {
         setNotification({
           message: `Usuário '${res.name}' foi criado com sucesso!`,
@@ -61,7 +61,7 @@ export const useInsertUser = () => {
     disabled,
     loading,
     handleOnChange,
-    insertUser,
+    insertAdmin,
     handleOnClick,
   };
 };

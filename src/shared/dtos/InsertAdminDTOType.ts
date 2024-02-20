@@ -1,4 +1,4 @@
-export interface InsertUserDTOType {
+export interface InsertAdminDTOType {
   name: string;
   email: string;
   phone: string;
