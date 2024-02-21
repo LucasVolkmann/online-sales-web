@@ -5,10 +5,12 @@ import { URL_PRODUCT, URL_PRODUCT_ID } from '../../../shared/constants/Urls';
 import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { ProductType } from '../../../shared/types/ProductType';
+import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer';
 import { useProductReducer } from '../../../store/reducers/productReducer/useProductReducer';
 import { ProductRoutesEnum } from '../routes';
 
 export const useProducts = () => {
+  const { setNotification } = useGlobalReducer();
   const { products, setProducts } = useProductReducer();
   const [filtProducts, setFiltProducts] = useState<ProductType[]>([]);
   const { request } = useRequests();
@@ -37,7 +39,14 @@ export const useProducts = () => {
   };
 
   const handleOnClickDelete = async (productId: number) => {
-    await request(URL_PRODUCT_ID.replace('{productId}', `${productId}`), MethodsEnum.DELETE);
+    await request(URL_PRODUCT_ID.replace('{productId}', `${productId}`), MethodsEnum.DELETE).then(
+      () => {
+        setNotification({
+          message: 'Produto excluído com sucesso!',
+          type: 'success',
+        });
+      },
+    );
     await request(URL_PRODUCT, MethodsEnum.GET, setProducts);
   };
 

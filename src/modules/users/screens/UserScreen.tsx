@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Screen from '../../../shared/components/screens/Screen';
-import { DisplayFlexJCSpaceAround } from '../../../shared/components/styles/display.style';
+import { DisplayFlexJCSpaceBetween } from '../../../shared/components/styles/display.style';
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
 import Table from '../../../shared/components/tables/Table';
 import { URL_USER_ALL } from '../../../shared/constants/Urls';
@@ -61,7 +61,7 @@ const UserScreen = () => {
 
   return (
     <Screen menuCurrentPage="user" listBreadcrumb={[{ name: 'HOME' }, { name: 'USUÁRIOS' }]}>
-      <DisplayFlexJCSpaceAround margin="0px 0px 24px">
+      <DisplayFlexJCSpaceBetween margin="0px 0px 24px">
         <LimitedContainer width="300px">
           <FilterInput placeholder="Buscar Usuário" onSearch={handleOnSearch}></FilterInput>
         </LimitedContainer>
@@ -73,7 +73,7 @@ const UserScreen = () => {
             </Button>
           )}
         </LimitedContainer>
-      </DisplayFlexJCSpaceAround>
+      </DisplayFlexJCSpaceBetween>
       <Table columns={columns} dataSource={filtUsers}></Table>
     </Screen>
   );

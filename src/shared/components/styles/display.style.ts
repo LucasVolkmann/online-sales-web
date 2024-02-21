@@ -17,6 +17,10 @@ export const DisplayFlexJustifyCenter = styled(DisplayFlex)`
   justify-content: center;
 `;
 
-export const DisplayFlexJCSpaceAround = styled(DisplayFlex)`
+export const DisplayFlexJCSpaceBetween = styled(DisplayFlex)`
   justify-content: space-between;
+`;
+
+export const DisplayFlexJCSpaceAround = styled(DisplayFlex)`
+  justify-content: space-around;
 `;

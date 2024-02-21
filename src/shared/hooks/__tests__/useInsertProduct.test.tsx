@@ -4,7 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import { act } from 'react-dom/test-utils';
 
 import { URL_PRODUCT } from '../../constants/Urls';
-import { useInsertProduct } from '../useInsertProduct';
+import { useInsertProduct } from '../../../modules/products/hooks/useInsertProduct';
 
 const mockNavigate = jest.fn();
 const mockSetNotification = jest.fn();

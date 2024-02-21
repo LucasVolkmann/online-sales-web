@@ -6,7 +6,7 @@ import Button from '../../../shared/components/buttons/button/Button';
 import Input from '../../../shared/components/inputs/input/Input';
 import Screen from '../../../shared/components/screens/Screen';
 import {
-  DisplayFlexJCSpaceAround,
+  DisplayFlexJCSpaceBetween,
   DisplayFlexJustifyCenter,
 } from '../../../shared/components/styles/display.style';
 import { OutsideFormDivClass } from '../../../shared/components/styles/insertProducts.style';
@@ -77,7 +77,7 @@ const InsertAdminScreen = () => {
               label="CPF"
             />
 
-            <DisplayFlexJCSpaceAround>
+            <DisplayFlexJCSpaceBetween>
               <LimitedContainer width={'150px'}>
                 <Button
                   disabled={disabled}
@@ -98,7 +98,7 @@ const InsertAdminScreen = () => {
                   Cancelar
                 </Button>
               </LimitedContainer>
-            </DisplayFlexJCSpaceAround>
+            </DisplayFlexJCSpaceBetween>
           </LimitedContainer>
         </DisplayFlexJustifyCenter>
       </Screen>

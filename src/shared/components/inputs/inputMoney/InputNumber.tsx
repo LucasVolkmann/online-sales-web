@@ -2,15 +2,14 @@ import { useEffect, useState } from 'react';
 
 import Input, { InputProps } from '../input/Input';
 
-interface InputMoneyProps extends InputProps {
+interface InputNumberProps extends InputProps {
   value: number;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  addonBefore?: string;
 }
 
 const DECIMAL_SIZE = 2;
 
-const InputMoney = ({ value, onChange, addonBefore = 'R$', ...props }: InputMoneyProps) => {
+const InputNumber = ({ value, onChange, ...props }: InputNumberProps) => {
   const [currentValue, setCurrentValue] = useState<string>(`${value}`);
 
   useEffect(() => {
@@ -38,9 +37,7 @@ const InputMoney = ({ value, onChange, addonBefore = 'R$', ...props }: InputMone
     });
   };
 
-  return (
-    <Input addonBefore={addonBefore} onChange={handleOnChange} value={currentValue} {...props} />
-  );
+  return <Input onChange={handleOnChange} value={currentValue} {...props} />;
 };
 
-export default InputMoney;
+export default InputNumber;
