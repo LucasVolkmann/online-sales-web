@@ -38,7 +38,7 @@ export const useProducts = () => {
     }
   };
 
-  const handleOnClickDelete = async (productId: number) => {
+  const deleteProduct = async (productId: number) => {
     await request(URL_PRODUCT_ID.replace('{productId}', `${productId}`), MethodsEnum.DELETE).then(
       () => {
         setNotification({
@@ -51,9 +51,9 @@ export const useProducts = () => {
   };
 
   return {
-    handleOnSearch,
-    handleOnClickInsert,
+    deleteProduct,
     filtProducts,
-    handleOnClickDelete,
+    handleOnClickInsert,
+    handleOnSearch,
   };
 };

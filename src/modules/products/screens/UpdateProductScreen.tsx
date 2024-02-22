@@ -1,5 +1,5 @@
 import { Spin } from 'antd';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Input from '../../../shared/components/inputs/input/Input';
@@ -13,6 +13,7 @@ import {
 } from '../../../shared/components/styles/display.style';
 import { OutsideFormDivClass } from '../../../shared/components/styles/insertProducts.style';
 import { LimitedContainer } from '../../../shared/components/styles/limited.style';
+import { CategoryType } from '../../../shared/types/CategoryType';
 import { useCategory } from '../../categories/hooks/useCategory';
 import { useUpdateProduct } from '../hooks/useUpdateProduct';
 import { ProductRoutesEnum } from '../routes';
@@ -21,7 +22,8 @@ const UpdateProductScreen = () => {
   const { productId } = useParams<{ productId: string }>();
   const { categories, loading: categoryLoading } = useCategory();
   const {
-    handleOnClick,
+    handleOnClickUpdate,
+    handleOnClickCancel,
     handleInputChange,
     handleSelectChange,
     updateProduct,
@@ -29,7 +31,6 @@ const UpdateProductScreen = () => {
     loading,
     loadingGetProduct,
   } = useUpdateProduct(Number(productId));
-  const navigate = useNavigate();
 
   return (
     <Screen
@@ -77,11 +78,12 @@ const UpdateProductScreen = () => {
                 margin="0px 0px 16px 0px"
                 onChange={handleSelectChange}
                 defaultValue={{
-                  label: categories.find((category) => category.id == updateProduct.categoryId)
-                    ?.name,
+                  label: categories.find(
+                    (category: CategoryType) => category.id == updateProduct.categoryId,
+                  )?.name,
                   value: updateProduct.categoryId,
                 }}
-                options={categories.map((category) => ({
+                options={categories.map((category: CategoryType) => ({
                   label: category.name,
                   value: category.id,
                 }))}
@@ -143,7 +145,7 @@ const UpdateProductScreen = () => {
                   <Button
                     disabled={disabled}
                     loading={loading}
-                    onClick={handleOnClick}
+                    onClick={handleOnClickUpdate}
                     margin="16px 0px 0px 0px"
                     type="primary"
                   >
@@ -151,11 +153,7 @@ const UpdateProductScreen = () => {
                   </Button>
                 </LimitedContainer>
                 <LimitedContainer width={'150px'}>
-                  <Button
-                    danger
-                    onClick={() => navigate(ProductRoutesEnum.PRODUCT)}
-                    margin="16px 0px 0px 0px"
-                  >
+                  <Button danger onClick={handleOnClickCancel} margin="16px 0px 0px 0px">
                     Cancelar
                   </Button>
                 </LimitedContainer>

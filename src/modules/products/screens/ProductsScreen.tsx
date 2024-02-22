@@ -1,4 +1,4 @@
-import { TableColumnsType } from 'antd';
+import { Popconfirm, TableColumnsType } from 'antd';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,8 +28,12 @@ const breadcrumbList = [
 ];
 
 export const ProductsScreen = () => {
-  const { handleOnSearch, handleOnClickInsert, filtProducts, handleOnClickDelete } = useProducts();
+  const { deleteProduct, filtProducts, handleOnClickInsert, handleOnSearch } = useProducts();
   const navigate = useNavigate();
+
+  const handleOk = (productId: number) => {
+    deleteProduct(productId);
+  };
 
   const columns: TableColumnsType<ProductType> = useMemo(() => {
     return [
@@ -71,12 +75,15 @@ export const ProductsScreen = () => {
             >
               Editar
             </a>
-            <a
-              style={{ textDecoration: 'underline', color: 'red' }}
-              onClick={() => handleOnClickDelete(product.id)}
+            <Popconfirm
+              placement="left"
+              title="Tem certeza?"
+              okText="SIM"
+              cancelText="NÃO"
+              onConfirm={() => handleOk(product.id)}
             >
-              Deletar
-            </a>
+              <a style={{ textDecoration: 'underline', color: 'red' }}>Deletar</a>
+            </Popconfirm>
           </DisplayFlexJCSpaceAround>
         ),
       },
