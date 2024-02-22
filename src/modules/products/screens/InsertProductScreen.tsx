@@ -86,47 +86,47 @@ const InsertProductScreen = () => {
               />
             </LimitedContainer>
             <LimitedContainer width="45%">
-              <InputNumber
+              <Input
                 data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
                 value={insertProduct.length}
                 onChange={(event) => handleInputChange(event, 'length', true)}
                 margin="0px 0px 16px 0px"
                 label="Comprimento"
-                addonAfter="m"
+                addonAfter="cm"
               />
             </LimitedContainer>
           </DisplayFlexJCSpaceAround>
           <DisplayFlexJCSpaceAround>
             <LimitedContainer width="45%">
-              <InputNumber
+              <Input
                 data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
                 value={insertProduct.height}
                 onChange={(event) => handleInputChange(event, 'height', true)}
                 margin="0px 0px 16px 0px"
                 label="Altura"
-                addonAfter="m"
+                addonAfter="cm"
               />
             </LimitedContainer>
             <LimitedContainer width="45%">
-              <InputNumber
+              <Input
                 data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
                 value={insertProduct.width}
                 onChange={(event) => handleInputChange(event, 'width', true)}
                 margin="0px 0px 16px 0px"
                 label="Largura"
-                addonAfter="m"
+                addonAfter="cm"
               />
             </LimitedContainer>
           </DisplayFlexJCSpaceAround>
           <DisplayFlexJustifyCenter>
             <LimitedContainer width="45%">
-              <InputNumber
+              <Input
                 data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
                 value={insertProduct.diameter}
                 onChange={(event) => handleInputChange(event, 'diameter', true)}
                 margin="0px 0px 16px 0px"
                 label="Diâmetro"
-                addonAfter="m"
+                addonAfter="cm"
               />
             </LimitedContainer>
           </DisplayFlexJustifyCenter>

@@ -13,9 +13,13 @@ export const useCategory = () => {
   const { categories, setCategories } = useCategoryReducer();
   const { request } = useRequests();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    request<CategoryType[]>(URL_CATEGORY, MethodsEnum.GET, setCategories);
+    setLoading(true);
+    request<CategoryType[]>(URL_CATEGORY, MethodsEnum.GET, setCategories).then(() =>
+      setLoading(false),
+    );
   }, []);
 
   useEffect(() => {
@@ -43,5 +47,6 @@ export const useCategory = () => {
     handleOnClickInsert,
     displayCategories,
     setDisplayCategories,
+    loading,
   };
 };
