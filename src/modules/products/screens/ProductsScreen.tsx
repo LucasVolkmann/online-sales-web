@@ -64,7 +64,7 @@ export const ProductsScreen = () => {
         sorter: (a, b) => a.price - b.price,
       },
       {
-        title: 'Actions',
+        title: 'Ações',
         dataIndex: '',
         key: 'x',
         render: (_, product) => (
