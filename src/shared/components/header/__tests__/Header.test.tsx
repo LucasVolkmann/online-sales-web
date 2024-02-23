@@ -1,6 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 
 import { logout } from '../../../functions/connection/auth';
+import { UserType } from '../../../types/UserType';
 import { HeaderTestIdEnum } from '../enum/headerTestIdEnum';
 import Header from '../Header';
 
@@ -10,6 +11,17 @@ jest.mock('react-router-dom', () => ({
 
 jest.mock('../../../functions/connection/auth', () => ({
   logout: jest.fn(),
+}));
+
+const MOCK_USER: UserType = {
+  id: 0,
+  name: '',
+  email: '',
+  cpf: '',
+  phone: '',
+};
+jest.mock('../../../../store/reducers/globalReducer/useGlobalReducer', () => ({
+  useGlobalReducer: () => MOCK_USER,
 }));
 
 describe('Test [Header]', () => {

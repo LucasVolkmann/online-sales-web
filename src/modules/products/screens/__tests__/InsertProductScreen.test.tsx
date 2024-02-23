@@ -4,7 +4,10 @@ import { mockInsertProduct } from '../../__mocks__/mockInsertProduct.mock';
 import { InsertProductScreenTestIdEnum } from '../../enum/InsertProductScreenTestIdEnum';
 import InsertProductScreen from '../InsertProductScreen';
 
-jest.mock('../../../../shared/hooks/useInsertProduct', () => ({
+const mockHandleOnClick = jest.fn();
+let currentValue = '';
+let currentType = '';
+jest.mock('../../hooks/useInsertProduct', () => ({
   useInsertProduct: () => ({
     insertProduct: mockInsertProduct,
     disabled: false,
@@ -17,20 +20,25 @@ jest.mock('../../../../shared/hooks/useInsertProduct', () => ({
     handleOnClick: mockHandleOnClick,
   }),
 }));
-const mockHandleOnClick = jest.fn();
-let currentValue = '';
-let currentType = '';
 
 jest.mock('../../../categories/hooks/useCategory', () => ({
   useCategory: () => ({
     categories: [],
   }),
 }));
+
+const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
-const mockNavigate = jest.fn();
+jest.mock('../../../../store/reducers/globalReducer/useGlobalReducer', () => ({
+  useGlobalReducer: () => ({
+    user: {},
+    setNotification: () => jest.fn(),
+    setUser: () => jest.fn(),
+  }),
+}));
 
 describe('Test [InsertProductScreen]', () => {
   it('should be render', () => {

@@ -26,9 +26,14 @@ describe('Test useInsertProduct', () => {
     expect(result.current.loading).toEqual(false);
     expect(result.current.disabled).toEqual(true);
     expect(result.current.insertProduct).toEqual({
-      name: '',
+      diameter: 0,
+      height: 0,
       image: '',
+      length: 0,
+      name: '',
       price: 0,
+      weight: 0,
+      width: 0,
     });
   });
   it('should set [category_id] when [handleSelectChange] has been called', () => {

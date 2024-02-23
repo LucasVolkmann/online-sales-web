@@ -77,7 +77,6 @@ const InsertProductScreen = () => {
           <DisplayFlexJCSpaceAround>
             <LimitedContainer width="45%">
               <InputNumber
-                data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
                 value={insertProduct.weight}
                 onChange={(event) => handleInputChange(event, 'weight', true)}
                 margin="0px 0px 16px 0px"
@@ -87,7 +86,6 @@ const InsertProductScreen = () => {
             </LimitedContainer>
             <LimitedContainer width="45%">
               <Input
-                data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
                 value={insertProduct.length}
                 onChange={(event) => handleInputChange(event, 'length', true)}
                 margin="0px 0px 16px 0px"
@@ -99,7 +97,6 @@ const InsertProductScreen = () => {
           <DisplayFlexJCSpaceAround>
             <LimitedContainer width="45%">
               <Input
-                data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
                 value={insertProduct.height}
                 onChange={(event) => handleInputChange(event, 'height', true)}
                 margin="0px 0px 16px 0px"
@@ -109,7 +106,6 @@ const InsertProductScreen = () => {
             </LimitedContainer>
             <LimitedContainer width="45%">
               <Input
-                data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
                 value={insertProduct.width}
                 onChange={(event) => handleInputChange(event, 'width', true)}
                 margin="0px 0px 16px 0px"
@@ -121,7 +117,6 @@ const InsertProductScreen = () => {
           <DisplayFlexJustifyCenter>
             <LimitedContainer width="45%">
               <Input
-                data-testid={InsertProductScreenTestIdEnum.PRICE_INPUT}
                 value={insertProduct.diameter}
                 onChange={(event) => handleInputChange(event, 'diameter', true)}
                 margin="0px 0px 16px 0px"
