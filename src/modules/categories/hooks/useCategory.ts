@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { URL_CATEGORY, URL_CATEGORY_ID } from '../../../shared/constants/Urls';
 import { MethodsEnum } from '../../../shared/enumerations/methods.enum';
-import { connectionAPI_PUT } from '../../../shared/functions/connection/connectionAPI';
+import {
+  connectionAPI_DELETE,
+  connectionAPI_PUT,
+} from '../../../shared/functions/connection/connectionAPI';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { CategoryType } from '../../../shared/types/CategoryType';
 import { useCategoryReducer } from '../../../store/reducers/categoryReducer/useCategoryReducer';
@@ -96,19 +99,47 @@ export const useCategory = () => {
     });
   };
 
+  const handleOkClickDelete = async (categoryId: number) => {
+    await connectionAPI_DELETE(URL_CATEGORY_ID.replace('{categoryId}', `${categoryId}`)).then(
+      () => {
+        setNotification({
+          message: 'Categoria excluída com sucesso',
+          type: 'success',
+        });
+        const newCategoriesArray = categories.filter((cat) => cat.id != categoryId);
+        setCategories(newCategoriesArray);
+      },
+    );
+  };
+
+  const handleOnClickRefusedDeleteCategory = () => {
+    setNotification({
+      message: 'A categoria não pode ser excluída pois há produtos vinculados a ela.',
+      type: 'error',
+      description: 'Remova todos os produtos para excluí-la.',
+    });
+  };
+
+  const showModal = (category: CategoryType) => {
+    setCategoryToUpdate(category);
+    setIsModalOpen(true);
+  };
+
   return {
     categories,
     categoryToUpdate,
     displayCategories,
+    handleOkClickDelete,
     handleOnChangeModalInput,
     handleOnClickInsert,
+    handleOnClickRefusedDeleteCategory,
     handleOnClickUpdate,
     handleOnSearch,
     isModalOpen,
     loading,
-    setCategoryToUpdate,
     setDisplayCategories,
     setIsModalOpen,
+    showModal,
     updateButtonDisable,
     updateLoading,
   };

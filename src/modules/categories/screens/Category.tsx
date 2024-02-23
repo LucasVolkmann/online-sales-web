@@ -18,25 +18,18 @@ const Category = () => {
   const {
     categoryToUpdate,
     displayCategories,
+    handleOkClickDelete,
     handleOnChangeModalInput,
     handleOnClickInsert,
+    handleOnClickRefusedDeleteCategory,
     handleOnClickUpdate,
     handleOnSearch,
     isModalOpen,
-    setCategoryToUpdate,
     setIsModalOpen,
+    showModal,
     updateButtonDisable,
     updateLoading,
   } = useCategory();
-
-  const handleOk = (categoryId: number) => {
-    alert(`Category: ${categoryId}`);
-  };
-
-  const showModal = (category: CategoryType) => {
-    setCategoryToUpdate(category);
-    setIsModalOpen(true);
-  };
 
   const columns: TableColumnsType<CategoryType> = useMemo(() => {
     return [
@@ -71,15 +64,24 @@ const Category = () => {
               >
                 Editar
               </a>
-              <Popconfirm
-                placement="left"
-                title="Tem certeza?"
-                okText="SIM"
-                cancelText="NÃO"
-                onConfirm={() => handleOk(category.id)}
-              >
-                <a style={{ textDecoration: 'underline', color: 'red' }}>Deletar</a>
-              </Popconfirm>
+              {category.amountProducts <= 0 ? (
+                <Popconfirm
+                  placement="left"
+                  title="Tem certeza?"
+                  okText="SIM"
+                  cancelText="NÃO"
+                  onConfirm={() => handleOkClickDelete(category.id)}
+                >
+                  <a style={{ textDecoration: 'underline', color: 'red' }}>Deletar</a>
+                </Popconfirm>
+              ) : (
+                <a
+                  style={{ textDecoration: 'underline', color: 'lightgray' }}
+                  onClick={handleOnClickRefusedDeleteCategory}
+                >
+                  Deletar
+                </a>
+              )}
             </DisplayFlexJCSpaceAround>
           </>
         ),
@@ -112,12 +114,7 @@ const Category = () => {
         </LimitedContainer>
       </DisplayFlexJCSpaceBetween>
 
-      <Table
-        columns={columns}
-        dataSource={displayCategories.map((p) => {
-          return { ...p, key: p.id };
-        })}
-      />
+      <Table columns={columns} dataSource={displayCategories} />
     </Screen>
   );
 };
